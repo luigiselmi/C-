@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-/* Copy the input to the output. The program is terminated when a EOF
-character is written in the standard input, i.e. Ctrl + D */
+/* Copy the input to the standard output. The program is terminated when a EOF
+character is written in the standard input, i.e. by Ctrl + D */
 
 int main() {
   int c;
