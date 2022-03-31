@@ -20,7 +20,8 @@ char buf[BUF_SIZE];
 int bufp = 0;
 
 /* Implements a simple calculator using the reverse Polish notation
-   i.e. the operators follow their operands.
+   i.e. the operators follow their operands. The program is terminated
+   when a EOF character is written in the standard input i.e. Ctrl + D
 */
 
 int main() {
