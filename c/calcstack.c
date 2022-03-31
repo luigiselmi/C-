@@ -2,8 +2,8 @@
 #include "calc.h"
 
 #define MAX_VAL 100  // max stack depth
-int sp = 0;          // next free position in the stack
-double val[MAX_VAL];  // stack of values
+static int sp = 0;          // next free position in the stack
+static double val[MAX_VAL];  // stack of values
 
 /* Inserts a value at the top of the stack. A stack is a
    Last-In-First-Out (LIFO) container.

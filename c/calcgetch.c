@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #define BUF_SIZE 100
-char buf[BUF_SIZE];
-int bufp = 0;
+static char buf[BUF_SIZE];
+static int bufp = 0;
 
 /* Gets a character from the standard input*/
 int get_ch(void) {
