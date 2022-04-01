@@ -2,6 +2,7 @@
 
 void swap(int *px, int *py);
 int str_len(char *s);
+void str_copy(char *s, char *t);
 
 /* Shows pointers and use of & and * operators for variables, functions and arrays */
 int main() {
@@ -36,6 +37,12 @@ int main() {
   char s[] = "hello";
   printf("length of \"%s\" = %d\n", s, str_len(s));
 
+  char str2[] = "2nd string";
+  int size = str_len(str2);
+  char str1[size];
+  str_copy(str1, str2);
+  printf("String str1 = %s\n", str1);
+
 }
 
 void swap(int *px, int *py) {
@@ -49,4 +56,8 @@ int str_len(char *s) {
   int i;
   for (i = 0; *s != '\0'; i++, s++);
   return i;
+}
+
+void str_copy(char *s, char *t) {
+  while (*s++ = *t++);
 }
