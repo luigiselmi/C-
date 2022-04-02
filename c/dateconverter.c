@@ -8,6 +8,7 @@ static char day_table [2][13] = {
 int _leap(int year);
 int day_of_year(int year, int month, int day);
 void month_day(int year, int year_day, int *pmonth, int *pday);
+char *month_name(int n);
 
 /* Converts the day of a month into the day of the year and viceversa;
    e.g. 1st of march -> 60th day of the year, or 61st if leap
@@ -26,6 +27,8 @@ int main() {
   int *pmonth = &year_month;
   month_day(year, day_year, pmonth, pday);
   printf("Year %d, day of the year %d -> day %d of the month %d\n", year, day_year, day_month, year_month);
+
+  printf("Month %d: %s\n", month, month_name(month));
 }
 
 int day_of_year(int year, int month, int day) {
@@ -48,4 +51,13 @@ void month_day(int year, int year_day, int *pmonth, int *pday) {
 int _leap(int year) {
   int leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
   return leap;
+}
+/* Returns a pointer to the name of the month given its number */
+char *month_name(int n) {
+  static char *name[] = {
+    "Unknown month", "January", "February", "March",
+    "April", "May", "June", "July", "August", "September",
+    "October", "November", "December"
+  };
+  return (n < 1 || n > 12) ? name[0] : name[n];
 }
