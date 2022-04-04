@@ -20,11 +20,19 @@ int main() {
  struct point p1, p2;
  p1 = makepoint(10, 20);
  p2 = makepoint(30, 0);
+
+ // nested structure
  struct rect box = makerect(p1, p2);
  printf("Box coordinates: upperleft point = (%d, %d), bottom right point = (%d, %d)\n", box.upleft.x, box.upleft.y, box.btright.x, box.btright.y);
  struct point p3 = makepoint(20, 10);
  int inside = inside_rect(p3, box);
  printf("Is point p inside the box ? %s\n", inside ? "True" : "False");
+
+ // pointer to a structure
+ struct point *pp;
+ pp = &p3;
+ printf("Location x = %d, y = %d\n", (*pp).x, (*pp).y);
+ printf("Location x = %d, y = %d\n", pp->x, pp->y); // direct access from the pointer to the struct element
 }
 /* Creates a structure of type point from two integer coordinates */
 struct point makepoint(int x, int y) {
