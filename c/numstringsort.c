@@ -11,7 +11,8 @@ int numcmp(char *s1, char *s2);
 
 /* Sorts array of numbers or strings using a pointer to a function
    to select the function used for the comparison of a pair of
-   elements.
+   elements. Compile using the command
+   $ cc numstringsort.c sortlines.c
 */
 int main(int argc, char *argv[]) {
   int nlines; //lines read from the standard input
