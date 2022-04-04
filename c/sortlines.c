@@ -66,7 +66,7 @@ int get_line(char s[], int maxlength) {
   s[i] = '\0'; // end of the char array
   return i;
 }
-/* Sorts an array using the Quicksort algorithm */
+/* Sorts an array of strings using the Quicksort algorithm */
 void qsort(char *v[], int left, int right) {
   int last;
   void swap(char *v[], int i, int j);
