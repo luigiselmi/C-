@@ -7,7 +7,7 @@ int binsearch(char x, char v[], int size);
    array is sorted using the shellsort algorithm. The
    shellsort algorithm has a time complexity of N^(3/2)
    where N is the size of the input array. Shellsort is
-   efficient for small arrays. 
+   efficient for small arrays.
 */
 int main() {
   char a[] = {'x', 'b', 'a', 'c', 'm', 'd'};
@@ -19,7 +19,7 @@ int main() {
   printf("\n");
   char x = 'm';
   int found = binsearch(x, a, size);
-  printf("Is %c in the array ? %s\n", x, found > 0 ? "True" : "False");
+  printf("Is \'%c\' in the array ? %s\n", x, found >= 0 ? "True" : "False");
 }
 /* The Shell algorithm to sort an array */
 void shellsort(char v[], int n) {
