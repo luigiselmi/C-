@@ -7,8 +7,7 @@ int binsearch(char x, char v[], int size);
    array is sorted using the shellsort algorithm. The
    shellsort algorithm has a time complexity of N^(3/2)
    where N is the size of the input array. Shellsort is
-   efficient for small arrays. Compile using the command
-   $ cc binarysearch.c ShellSort.c -o binarysearch
+   efficient for small arrays. 
 */
 int main() {
   char a[] = {'x', 'b', 'a', 'c', 'm', 'd'};
