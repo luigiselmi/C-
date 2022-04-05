@@ -3,7 +3,11 @@
 void shellsort(char v[], int n);
 void reverse(char s[], int n);
 
-/* Sort an array */
+/* Sorts an array using the shellsort algorithm. The
+shellsort algorithm has a time complexity of N^(3/2)
+where N is the size of the input array. Shellsort is
+efficient for small arrays.*/
+
 int main() {
 
   char a[] = {'x', 'b', 'a', 'c', 'm', 'd'};
