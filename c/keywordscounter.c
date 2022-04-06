@@ -2,7 +2,7 @@
 #include <ctype.h>  // isalpha()
 #include <string.h> // strcmp()
 
-#define MAX_NUM_KEYWORDS  100 //max number of keywords
+#define MAX_NUM_KEYWORDS  100 //max number of keywords read from standard input
 
 int getword(char *word, int lim);
 
