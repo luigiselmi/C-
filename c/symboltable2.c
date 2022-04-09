@@ -34,16 +34,14 @@ int main() {
 
   while (scanf("%s %s", name, defn) != EOF)
     if (isalpha(name[0]) && isalpha(defn[0])) {
-      //printf("name[0] = %c, defn[0] = %c\n", name[0], defn[0]);
       struct nlist symbol = *insert(name, defn);
-      //printf("Name: %s, Definition: %s, Hash name: %d\n", symbol.name, symbol.defn, hash(symbol.name));
     }
     else
       printf("Else branch -> Name: %s, Definition: %s, Hash name: %d\n", name, defn, hash(name));
 
   printf("Printing the dictionary\n\n");
   print();
-  
+
 }
 /* Computes the hash of a name then traverses the linked list*/
 unsigned hash(char *s) {
