@@ -30,7 +30,6 @@ void print(void);
 int main() {
   char name[MAX_NUM_WORDS];
   char defn[MAX_NUM_WORDS];
-  //char *name, *defn;
 
   while (scanf("%s %s", name, defn) != EOF)
     if (isalpha(name[0]) && isalpha(defn[0])) {
