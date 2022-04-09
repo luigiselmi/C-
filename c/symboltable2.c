@@ -17,6 +17,7 @@ static struct nlist *hashtab[HASH_SIZE]; // array of pointers to struct of type 
 unsigned hash(char *s);
 struct nlist *insert(char *name, char *defn);
 struct nlist *lookup(char *s);
+void print(void);
 
 /* Implements a symbol table to store a dictionary,
    a collection of name, value pairs. The hash value
@@ -41,15 +42,8 @@ int main() {
       printf("Else branch -> Name: %s, Definition: %s, Hash name: %d\n", name, defn, hash(name));
 
   printf("Printing the dictionary\n\n");
-  struct nlist *np;
-  for (int i = 0; i < MAX_NUM_WORDS; i++)
-   for (np = hashtab[i]; np != NULL; np = np->next) {
-     printf("Index: %d, Linked list pointer: %d\n", i, hashtab[i]);
-     struct nlist record = *lookup(np->name);
-     printf("Name: %s, Definition: %s, Hash name: %d\n\n", record.name, record.defn, hash(record.name));
-   }
-
-
+  print();
+  
 }
 /* Computes the hash of a name then traverses the linked list*/
 unsigned hash(char *s) {
@@ -102,4 +96,14 @@ char *_strdup(char *s) {
   if (p != NULL)
     strcpy(p, s);
   return p;
+}
+/* Prints the symbol table */
+void print(void) {
+  struct nlist *np;
+  for (int i = 0; i < MAX_NUM_WORDS; i++)
+   for (np = hashtab[i]; np != NULL; np = np->next) {
+     printf("Index: %d, Linked list pointer: %d\n", i, hashtab[i]);
+     struct nlist record = *lookup(np->name);
+     printf("Name: %s, Definition: %s, Hash name: %d\n\n", record.name, record.defn, hash(record.name));
+   }
 }
