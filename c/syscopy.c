@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <stdio.h>
 
 #define BUFSIZ 1024
 
