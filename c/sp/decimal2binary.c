@@ -2,7 +2,7 @@
 #include <string.h> // strcmp(), strcpy(), strlen()
 #include <math.h>
 #define MAX_DIGITS_EXPONENT 8
-#define MAX_DIGITS_MANTISSA 24
+#define MAX_DIGITS_MANTISSA 23
 #define BIAS 127
 
 /*
@@ -26,17 +26,17 @@ int main () {
 
   char exponent[MAX_DIGITS_EXPONENT];
   char mantissa[MAX_DIGITS_MANTISSA];
-  
+
   float decimal;
   printf("Write the rational number in decimal\n");
   scanf("%f", &decimal);
   int exp1;
   float ratio1 = frexp(decimal, &exp1);
-  printf("Number (decimal): %.10f, Ratio %f, Exp.: %d\n", decimal, ratio1, exp1);
+  printf("Ratio %f, Exp.: %d\n", ratio1, exp1);
 
   double int2;
   double dec2 = modf(decimal, &int2);
-  printf("Number (decimal): %.10f, Int.: %.0f, Dec. %f, \n", decimal, int2, dec2);
+  printf("Int.: %.0f, Dec. %f, \n", int2, dec2);
   // exponent
   int exp2 = dec2bin_exp(decimal);
   printf("Number (decimal): %.10f, Exponent %d\n", decimal, exp2);
@@ -46,6 +46,7 @@ int main () {
     bin[i] = 0;
 
   bin_exp(exp2, bin, MAX_DIGITS_EXPONENT);
+  printf("Exponent: ");
   for (int i = 0; i < MAX_DIGITS_EXPONENT; i++)
     printf("%d", bin[i]);
   printf("\n");
@@ -55,10 +56,13 @@ int main () {
   for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
     mant_array[i] = 0;
 
+
   bin_mant(ratio1, mant_array, MAX_DIGITS_MANTISSA);
+  printf("32-bit (float) mantissa (bit 23 to 1): ");
   for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
     printf("%d", mant_array[i]);
   printf("\n");
+
   int dec_mant = dec2bin_mant(mant_array, MAX_DIGITS_MANTISSA);
   printf("Mantissa from binary (dec): %d\n", dec_mant);
 }
@@ -96,21 +100,27 @@ void bin_exp(int dec_exp, int bin[], int len) {
     i++;
     dec_exp /= 2;
   }
-  //bin[i] = '\0';
+
 }
 /* Computes the mantissa in binary format of a number in decimal */
 void bin_mant(double dec_mant, int bin[], int len) {
   printf("Mantissa (dec): %f\n", dec_mant);
   int i = 0;
   double precision = 0.00001;
-  double integral = 1.0;
-  while (dec_mant > precision) {
-    printf("i = %d, dec_mant = %f, Integral = %.0f\n", i, dec_mant, integral);
-    dec_mant = modf(dec_mant, &integral) ;
-    bin[len - i] = integral;
-    dec_mant *= 2;
+  double init_integral;
+  double init_decimal = modf(dec_mant * 2, &init_integral);
+  printf("Start: integral = %.0f, decimal = %f\n", init_integral, init_decimal);
+  double decimal = init_decimal;
+  double integral = init_integral;
+  while (decimal > precision) {
+    double integral;
+    double next_decimal = modf(decimal * 2, &integral);
+    bin[i] = integral;
+    decimal = next_decimal;
+    //printf("i = %d, integral = %.0f, decimal = %f\n", i, bin[i], decimal);
     i++;
   }
+
 }
 /* Converts from the binary to the the decimal representation of the mantissa */
 int dec2bin_mant(int im[], int len) {
