@@ -3,7 +3,13 @@
 //#define N 10000000
 #define N 2396747
 /* This program shows the errors than can arise while
-   working with rational numbers.
+   working with rational numbers. These errors affects
+   particularly non-linear systems for which small
+   differences of initial conditions may produce very
+   different results (see Lorentz on Meteorology, Ruelle
+   on Chaos Theory, ensemble forecasting). Therefore
+   it is fundamental to understand what errors may arise
+   and how to avoid them.  
 */
 int main () {
   float S = 0., x = 7.;
