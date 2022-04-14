@@ -4,6 +4,7 @@
 #define MAX_DIGITS_EXPONENT 8
 #define MAX_DIGITS_MANTISSA 23
 #define EXPONENT_BIAS 127
+#define PRECISION 0.0000001
 
 /*
    What we are more interested in to understand how floating-point arithmetic
@@ -101,13 +102,9 @@ void int2binary(int intnum, int bin[], int len) {
 /* Computes the mantissa from the ratio of the input number in normal form. */
 void ratio2binary(double ratio, int bin[], int len) {
   int i = 0;
-  double precision = 0.0000001;
-  double init_integral;
-  double init_decimal = modf(ratio * 2, &init_integral);
-  //printf("Start: integral = %.0f, decimal = %f\n", init_integral, init_decimal);
-  double decimal = init_decimal;
-  double integral = init_integral;
-  while (decimal > precision) {
+  double init_integral; // not used
+  double decimal = modf(ratio * 2, &init_integral);
+  while (decimal > PRECISION) {
     double integral;
     double next_decimal = modf(decimal * 2, &integral);
     bin[i] = integral;
