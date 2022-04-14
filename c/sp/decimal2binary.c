@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h> // strcmp(), strcpy(), strlen()
 #include <math.h>  // frexp(), modf()
+
 #define MAX_DIGITS_EXPONENT 8
 #define MAX_DIGITS_MANTISSA 23
 #define EXPONENT_BIAS 127
@@ -30,9 +31,6 @@ int mant2dec(int im[], int len);
 int power(int base, int n);
 
 int main () {
-
-  char exponent[MAX_DIGITS_EXPONENT];
-  char mantissa[MAX_DIGITS_MANTISSA];
 
   float num;
   printf("Write the rational number (in decimal):\n");
