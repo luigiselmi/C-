@@ -103,12 +103,12 @@ void int2binary(int intnum, int bin[], int len) {
 void ratio2binary(double ratio, int bin[], int len) {
   int i = 0;
   double init_integral; // not used
-  double decimal = modf(ratio * 2, &init_integral);
-  while (decimal > PRECISION) {
+  double fraction = modf(ratio * 2, &init_integral);
+  while (fraction > PRECISION) {
     double integral;
-    double next_decimal = modf(decimal * 2, &integral);
+    double next_fraction = modf(fraction * 2, &integral);
     bin[i] = integral;
-    decimal = next_decimal;
+    fraction = next_fraction;
     //printf("i = %d, integral = %.0f, decimal = %f\n", i, bin[i], decimal);
     i++;
   }
