@@ -1,115 +1,110 @@
 #include <stdio.h>
 #include <string.h> // strcmp(), strcpy(), strlen()
-#include <math.h>
+#include <math.h>  // frexp(), modf()
 #define MAX_DIGITS_EXPONENT 8
 #define MAX_DIGITS_MANTISSA 23
-#define BIAS 127
+#define EXPONENT_BIAS 127
 
 /*
-   What we are more interested in is how to represent a decimal value
-   as floating point with 32 binary digits (single precision). The steps
-   are as follows
-   1) put the number in normalized scientific notation, e.g., if the number
-      is 10 digits divide by 10^9
-   2) transform the digit on the left of the decimal point into binary form
-   3) transform the digits on the right of the decimal point into binary form
+   What we are more interested in to understand how floating-point arithmetic
+   works is how to represent a decimal value as floating-point with 32 binary
+   digits (single precision). The binary representation of a floating point
+   number will help us to understand the rounding errors. The steps to represent
+   a number in binary floating point are as follows
+   1) put the number in normalized scientific notation, with a ratio and an
+      exponent (base 2) so that we can convert the exponent and the mantissa separately
+   2) Convert the exponent in binary
+   3) For the mantissa, transform the ratio into binary form.
+      We use two functions from the <math.h> library: frexp() and modf(). The
+      first one is used to compute the normalized form of a number in order to have
+      a fraction (ratio) r with 0<r<1 and an exponent e with base 2 (2^e). The
+      second one is used to extract the integer part on the left of the decimal
+      point, and the decimal part on the right.
 
 */
-
+int getexp(int power);
+void int2binary(int intnum, int bin[], int len);
+void ratio2binary(double ratio, int bin[], int len);
+int mant2dec(int im[], int len);
 int power(int base, int n);
-int dec2bin_exp(float num);
-void bin_exp(int dec_exp, int bin[], int len);
-void bin_mant(double dec_mant, int bin[], int len);
-int dec2bin_mant(int im[], int len);
 
 int main () {
 
   char exponent[MAX_DIGITS_EXPONENT];
   char mantissa[MAX_DIGITS_MANTISSA];
 
-  float decimal;
-  printf("Write the rational number in decimal\n");
-  scanf("%f", &decimal);
-  int exp1;
-  float ratio1 = frexp(decimal, &exp1);
-  printf("Ratio %f, Exp.: %d\n", ratio1, exp1);
+  float num;
+  printf("Write the rational number (in decimal):\n");
+  scanf("%f", &num);
+  int powerb2;
+  float ratio = frexp(num, &powerb2);  // ratio and exponent (base 2) of the input number
+  printf("Normal form ratio %f, power (base 2): %d\n", ratio, powerb2);
+  /*
+  double integral;
+  double fraction = modf(num, &integral);
+  printf("Integral part.: %.0f, Fractional part. %f, \n", integral, fraction);
+  */
 
-  double int2;
-  double dec2 = modf(decimal, &int2);
-  printf("Int.: %.0f, Dec. %f, \n", int2, dec2);
-  // exponent
-  int exp2 = dec2bin_exp(decimal);
-  printf("Number (decimal): %.10f, Exponent %d\n", decimal, exp2);
+  int exp = getexp(powerb2);
+  printf("Floating-point exponent (dec): %d\n", exp);
 
-  int bin[MAX_DIGITS_EXPONENT];
+  // initialization of the array for the exponent binary digits
+  int exp_array[MAX_DIGITS_EXPONENT];
   for (int i = 0; i < MAX_DIGITS_EXPONENT; i++)
-    bin[i] = 0;
+    exp_array[i] = 0;
 
-  bin_exp(exp2, bin, MAX_DIGITS_EXPONENT);
-  printf("Exponent: ");
+  // Converts the floating-point exponent from decimal to binary
+  int2binary(exp, exp_array, MAX_DIGITS_EXPONENT);
+  printf("Floating-point exponent (binary): ");
   for (int i = 0; i < MAX_DIGITS_EXPONENT; i++)
-    printf("%d", bin[i]);
+    printf("%d", exp_array[i]);
   printf("\n");
 
-  // mantissa
+  // initialization of the array for the mantissa binary digits
   int mant_array[MAX_DIGITS_MANTISSA];
   for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
     mant_array[i] = 0;
 
-
-  bin_mant(ratio1, mant_array, MAX_DIGITS_MANTISSA);
-  printf("32-bit (float) mantissa (bit 23 to 1): ");
+  // Converts the ratio from the normal form of the input number into binary
+  ratio2binary(ratio, mant_array, MAX_DIGITS_MANTISSA);
+  printf("Floating-point mantissa (binary): ");
   for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
     printf("%d", mant_array[i]);
   printf("\n");
 
-  int dec_mant = dec2bin_mant(mant_array, MAX_DIGITS_MANTISSA);
-  printf("Mantissa from binary (dec): %d\n", dec_mant);
+  int mant = mant2dec(mant_array, MAX_DIGITS_MANTISSA);
+  printf("Floating-point mantissa (dec): %d\n", mant);
 }
-
-/* Raises the base to the power of n*/
-int power(int base, int n) {
-  if (n == 0)
-    return 1;
-  int p;
-  for (p = 1; n - 1 >= 0; --n)
-    p *= base;
-  return p;
-}
-/* Computes the exponent to be used to convert
-   a decimal number into a binary in floating
-   point.
+/* Computes the floating-point exponent in decimal from the
+   power of the input number in normal form.
 */
-int dec2bin_exp(float num) {
-  int exp;
-  float dec = frexp(num, &exp);
-  return BIAS + exp - 1;
+int getexp(int power) {
+  return EXPONENT_BIAS + power - 1;
 }
-/* Converts a decimal number into a binary one.
+/* Converts an integer number from decimal to binary.
    The remainder of a division by 2 is always '1' or '0'.
 */
-void bin_exp(int dec_exp, int bin[], int len) {
+void int2binary(int intnum, int bin[], int len) {
   int remainder = 0;
   int i = 0;
-  while (dec_exp != 0) {
-    remainder = dec_exp % 2;
+  while (intnum != 0) {
+    remainder = intnum % 2;
     if (remainder == 0)
       bin[len - 1 - i] = 0;
     else
       bin[len - 1 - i] = 1;
     i++;
-    dec_exp /= 2;
+    intnum /= 2;
   }
 
 }
-/* Computes the mantissa in binary format of a number in decimal */
-void bin_mant(double dec_mant, int bin[], int len) {
-  printf("Mantissa (dec): %f\n", dec_mant);
+/* Computes the mantissa from the ratio of the input number in normal form. */
+void ratio2binary(double ratio, int bin[], int len) {
   int i = 0;
-  double precision = 0.00001;
+  double precision = 0.0000001;
   double init_integral;
-  double init_decimal = modf(dec_mant * 2, &init_integral);
-  printf("Start: integral = %.0f, decimal = %f\n", init_integral, init_decimal);
+  double init_decimal = modf(ratio * 2, &init_integral);
+  //printf("Start: integral = %.0f, decimal = %f\n", init_integral, init_decimal);
   double decimal = init_decimal;
   double integral = init_integral;
   while (decimal > precision) {
@@ -122,10 +117,19 @@ void bin_mant(double dec_mant, int bin[], int len) {
   }
 
 }
-/* Converts from the binary to the the decimal representation of the mantissa */
-int dec2bin_mant(int im[], int len) {
-  int mant = 0;
+/* Converts the mantissa from binary to decimal */
+int mant2dec(int im[], int len) {
+  int dec = 0;
   for (int i = 0; i < len; i++)
-    mant += im[i] * power(2, len - i - 1);
-  return mant;
+    dec += im[i] * power(2, len - i - 1);
+  return dec;
+}
+/* Raises the base to the power of n*/
+int power(int base, int n) {
+  if (n == 0)
+    return 1;
+  int p;
+  for (p = 1; n - 1 >= 0; --n)
+    p *= base;
+  return p;
 }
