@@ -33,7 +33,7 @@ void copy_fct() {
   for (int i = 0; i < 10; i++)
     v2[i] = v1[i];
 
-  for (int x: v2) // range-for loop
+  for (int &x: v2) // range-for loop
     cout << x << "\n";
 }
 
