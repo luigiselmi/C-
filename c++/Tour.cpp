@@ -46,10 +46,11 @@ void vector_init(Vector& v, int s) {
   v.elem = new double[s];
   v.size = s;
 }
-
+/* Reads s integers from standard input and returns the sum */
 double read_and_sum(int s) {
   Vector v;
   vector_init(v, s);
+  cout << "Write " << s << " integers\n";
   for (int i = 0; i < s; i++)
     cin >> v.elem[i];  // read elements from standard input
   double sum = 0.0;
