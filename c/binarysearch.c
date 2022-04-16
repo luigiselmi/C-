@@ -32,7 +32,9 @@ void shellsort(char v[], int n) {
         v[j + gap] = temp;
       }
 }
-/* Searches a value x in the (ordered) input array */
+/* Searches a value x in the (ordered) input array.
+   The time complexity is log(N) + 1. 
+*/
 int binsearch(char x, char v[], int size) {
   int low = 0, high = size - 1, mid;
   while (low <= high) {
