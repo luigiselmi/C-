@@ -38,19 +38,12 @@ int main () {
   int powerb2;
   float ratio = frexp(num, &powerb2);  // ratio and exponent (base 2) of the input number
   printf("Normal form ratio %f, power (base 2): %d\n", ratio, powerb2);
-  /*
-  double integral;
-  double fraction = modf(num, &integral);
-  printf("Integral part.: %.0f, Fractional part. %f, \n", integral, fraction);
-  */
 
   int exp = getexp(powerb2);
   printf("Floating-point exponent (dec): %d\n", exp);
 
   // initialization of the array for the exponent binary digits
-  int exp_array[MAX_DIGITS_EXPONENT];
-  for (int i = 0; i < MAX_DIGITS_EXPONENT; i++)
-    exp_array[i] = 0;
+  int exp_array[MAX_DIGITS_EXPONENT] = {0};
 
   // Converts the floating-point exponent from decimal to binary
   int2binary(exp, exp_array, MAX_DIGITS_EXPONENT);
@@ -60,9 +53,7 @@ int main () {
   printf("\n");
 
   // initialization of the array for the mantissa binary digits
-  int mant_array[MAX_DIGITS_MANTISSA];
-  for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
-    mant_array[i] = 0;
+  int mant_array[MAX_DIGITS_MANTISSA] = {0};
 
   // Converts the ratio from the normal form of the input number into binary
   ratio2binary(ratio, mant_array, MAX_DIGITS_MANTISSA);

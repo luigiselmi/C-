@@ -54,9 +54,7 @@ int main () {
   }
 
   // exponent
-  int ie[MAX_DIGITS_EXPONENT];
-  for (int i = 0; i < MAX_DIGITS_EXPONENT; i++)
-    ie[i] = 0;
+  int ie[MAX_DIGITS_EXPONENT] = {0}; // initialization
 
   char2bin(exp_array, ie, MAX_DIGITS_EXPONENT);
 
@@ -64,9 +62,7 @@ int main () {
   printf("Floating-point exponent (dec): %d\n", exp);
 
   // mantissa
-  int im[MAX_DIGITS_MANTISSA];
-  for (int i = 0; i < MAX_DIGITS_MANTISSA; i++)
-    im[i] = 0;
+  int im[MAX_DIGITS_MANTISSA] = {0}; // initialization
 
   char2bin(mant_array, im, MAX_DIGITS_MANTISSA);
 
