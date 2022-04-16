@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 #define MAX_LEN 10 // max number of array's elements
+#define NOT_FOUND -1
 
 void sort(int data[], int N);
+int binsearch(int x, int v[], int size);
 
 /* Sorts an array using the bubblesort algorithm. */
 int main() {
@@ -23,6 +25,15 @@ int main() {
 
    for (int i = 0; i < N; ++i)
       printf("%d\n",data[i]);
+
+   printf("Write the number to be searched: \n");
+   int x;
+   scanf("%d", &x);
+   int index = binsearch(x, data, N);
+   index != NOT_FOUND ?
+      printf("The sought value %d is at index %d of the sorted array.\n", x, index)
+      :
+      printf("The sought value %d has not been found.\n", x);
 }
 /* Bubblesort algorithm */
 void sort(int data[], int N) {
@@ -36,4 +47,21 @@ void sort(int data[], int N) {
          }
       }
    }
+}
+/* Searches a value x in the (ordered) input array
+   using the binarysearch algorithm. The time complexity
+   of the algorithm is log(N) + 1 (log base 2).
+*/
+int binsearch(int x, int v[], int size) {
+  int low = 0, high = size - 1, middle;
+  while (low <= high) {
+    middle = (low + high) / 2;
+    if (x < v[middle])
+      high = middle - 1;
+    else if (x > v[middle])
+      low = middle + 1;
+    else
+      return middle; // found
+  }
+  return NOT_FOUND; // not found
 }
