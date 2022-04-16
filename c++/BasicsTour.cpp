@@ -2,23 +2,33 @@
 using namespace std;
 
 double sum(int s);
+void test(int s);
+
+constexpr double MAX_SIZE = 3;
 
 class Vector {
   private:
     double* elem; // pointer to the elements
     int sz; // the number of elements
   public:
-    Vector(int s): elem { new double[s] }, sz {s} { } // constructor
+    Vector(int s) {
+      if (s < 0) throw length_error{"Size cannot be negative."};
+      elem = new double[s];
+      sz = s;
+    }
     double& operator[](int i) { return elem[i]; } // element access: subscripting
     int size() { return sz; }
 };
 
 int main() {
   // Class
-  cout << "Sum elements of a vector: \n";
-  double s = sum(5);
+  cout << "Computes the sum of a vector's values: \n";
+  double s = sum(MAX_SIZE);
   cout << "Result: " << s << "\n";
   enum class Color { red, blue , green };
+
+  // Error handling
+  test(-5);
 
   // Enumeration
   Color x = Color::red;
@@ -53,6 +63,18 @@ double sum(int s) {
     sum += v[i];
   }
   return sum;
+}
+void test(int s) {
+  try {
+    cout << "Size = " << s << "\n";
+    Vector v(s);
+  }
+  catch (std::length_error) {
+    cout << "Error: size cannot be negative!\n";
+  }
+  catch (std::bad_alloc) {
+    cout << "No memory available.\n"; // handle memory exhaustion
+  }
 }
 /*
 TrafficLight& operator++(TrafficLight& t) {
