@@ -2,7 +2,10 @@
 
 void qsort(int v[], int left, int right);
 void print(int v[], int size);
-/* Implementation of the quicksort algorithm to sort an array */
+/* Implementation of the quicksort algorithm to sort an array.
+   The time complexity for quicksort is NlogN and it works inplace,
+   that is, it doesn' require an auxiliary array.
+ */
 
 int main() {
   //int s[] = {1, 9, 5, 2, 7, 6, 3, 4, 8, 0};
