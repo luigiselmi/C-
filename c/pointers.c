@@ -11,13 +11,13 @@ int main() {
   int *pi;  // pointer to an integer (variable or array), contains the address of an integer;
   printf("x = %d, y = %d\n", x, y);
   pi = &x;  // the pointer contains the x address
-  printf("&x = %d\n", pi);
-  y = *pi;  // y contains the value pointed by ip (i.e. x=1)
+  printf("x address (pointer) &x = %p\n", pi);
+  y = *pi;  // y contains the value pointed by pi (i.e. x=1)
   printf("x = %d, y = %d\n", x, y);
-  *pi = 2;  // the integer pointed by ip (x) is assigned a new value
+  *pi = 2;  // the integer pointed by pi (x) is assigned a new value
   printf("x = %d, y = %d\n", x, y);
-  int *pj = pi;  // the pointer iq points to the same object as ip, x
-  int a = *pj;  // the integer pointed by iq (x) is assigned to a
+  int *pj = pi;  // the pointer pj points to the same object as pi, i.e. x
+  int a = *pj;  // the integer pointed by pj (x) is assigned to a
   printf("a = %d\n", a);
 
   // Pointers to function's arguments
@@ -30,18 +30,30 @@ int main() {
   int c[10];
   int *pc;
   pc = &c[0]; // same as pc = c
-  printf("c addr = %d, pointer to c = %d\n", c, pc);
+  printf("array c addr = %p, pointer to c = %p\n", c, pc);
   for (int i = 0; i < sizeof(c)/sizeof(c[0]); ++i)
     c[i] = i * i;
-  printf("c[3] == *(c + 3) ? %s\n", c[3] == *(c + 3) ? "True" : "False");
-  char s[] = "hello";
-  printf("length of \"%s\" = %d\n", s, str_len(s));
+  printf("c[3] == *(c + 3) == %d ? %s\n", c[3], c[3] == *(c + 3) ? "True" : "False");
 
-  char str2[] = "2nd string";
-  int size = str_len(str2);
-  char str1[size];
-  str_copy(str1, str2);
-  printf("String str1 = %s\n", str1);
+  char source[] = "Hello World";
+  int size = str_len(source);
+  char target[size];
+  str_copy(source, target);
+  printf("Source string: \"%s\", target string: \"%s\"\n", source, target);
+
+  char string1 [50] = "";
+  char string2 [] = "%lf";
+  int n = 15;
+  sprintf(string1 , "%c%d%s", string2 [0], n, &string2[1]);
+  printf("%s\n", string1);
+
+  double a1, b, *pd;
+
+  a1 = 3.14;
+  pd = &a1;
+  pd++;
+  b = *(pd - 1);
+  printf("We get a = %f, b = %f", *pd, b);
 
 }
 
@@ -57,7 +69,7 @@ int str_len(char *s) {
   for (i = 0; *s != '\0'; i++, s++);
   return i;
 }
-
+/* Copies each source character into the target */
 void str_copy(char *s, char *t) {
-  while (*s++ = *t++);
+  while (*t++ = *s++);
 }

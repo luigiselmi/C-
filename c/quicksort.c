@@ -4,7 +4,7 @@ void qsort(int v[], int left, int right);
 void print(int v[], int size);
 /* Implementation of the quicksort algorithm to sort an array.
    The time complexity for quicksort is NlogN and it works inplace,
-   that is, it doesn' require an auxiliary array.
+   that is, it doesn't require an auxiliary array.
  */
 
 int main() {
