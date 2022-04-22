@@ -1,18 +1,18 @@
 #include <stdio.h>
 
-#define MAX_LEN 10 // max number of array's elements
-
 /* Computes the maximum, minimun and mean values
    of an array
 */
 int main() {
-   int data[MAX_LEN];
+
    int N; // number of data points to be inserted
    int min, max;
    double mean = 0.0;
 
-   printf("Number of data points (< %d): \n", MAX_LEN);
+   printf("Insert the number of data points: \n");
    scanf("%d", &N);
+
+   int data[N];
 
    for (int i = 0; i < N; ++i) {
       printf("Data point %d): ", i);
@@ -20,7 +20,7 @@ int main() {
    }
 
    min = max = data[0];
-   
+
    for (int i = 0; i < N; ++i) {
       if (min > data[i])
          min = data[i];
