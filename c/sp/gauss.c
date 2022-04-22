@@ -2,13 +2,16 @@
 
 #define MAX_NUM_COLS 10
 
-void insert_data(double a[][MAX_NUM_COLS], double b[], int n);
+void insert_data(double a[][MAX_NUM_COLS], double b[], int n); // nm of columns must be specified before hand
 void print_data(double a[][MAX_NUM_COLS], double b[], int n);
 void triangle(double A[][MAX_NUM_COLS], double b[], int n);
 void solve(double A[][MAX_NUM_COLS], double b[], double x[], int n);
 void print_solution(double x[], int n);
 
-/* Solves a system of linear equations, matrixx = b, by Gaussian elimination */
+/* Solves a system of linear equations, matrixx = b, by Gaussian elimination
+   In this example we see how multdimensional arrays can be passed as argument
+   to a function.
+*/
 int main() {
 
   int n; // number of linear equations
