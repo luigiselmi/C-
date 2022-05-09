@@ -2,12 +2,6 @@
 #include "gui/std_lib_facilities.h"
 using namespace std;
 
-class Token {
-  public:
-    char kind;
-    double value;
-};
-
 int main() {
   cout << "Please, enter an expression (use operators +, -, *, /):\n";
   cout << "End the expression usin a \';\'\n";
