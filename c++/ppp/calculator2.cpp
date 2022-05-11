@@ -1,5 +1,4 @@
 #include "gui/std_lib_facilities.h"
-#include <cmath>
 
 class Token {
   public:
@@ -14,10 +13,15 @@ class Token_stream {
   public:
     Token get();                // get a Token
     void putback(Token t);      // put a token back
+    void ignore(char c);
   private:
     bool full { false };        // is there a Token in the buffer?
     Token buffer {'0'};         // here is where putback() stores a Token
 };
+
+const char quit = 'q';
+const char print = ';';
+const char number = '8'; // let '8' represent a number
 
 void Token_stream::putback(Token t) {
     if (full) error("putback() into a full buffer");
@@ -35,8 +39,8 @@ Token Token_stream::get() {
   cin >> ch;              // note that >> skips whitespace
 
   switch (ch) {
-    case ';':           // for "print"
-    case 'q':           // for "quit"
+    case print:
+    case quit:
     case '(': case ')': case '{': case '}': case '!':
     case '+': case '-': case '*': case '/':
       return Token { ch };
@@ -46,11 +50,24 @@ Token Token_stream::get() {
       cin.putback(ch);    // put digit back into input stream
       double val;
       cin >> val;
-      return Token { '8', val };  // let '8' represent a number
+      return Token { number, val };
     }
     default:
       error("Bad token");
   }
+}
+
+void Token_stream::ignore(char c) {  // c represents the kind of Token
+  // first look in buffer:
+  if (full && c==buffer.kind) {
+    full = false;
+    return;
+  }
+  full = false;
+  // now search input:
+  char ch = 0;
+  while (cin>>ch)
+    if (ch==c) return;
 }
 
 Token_stream ts;            // provides get() and putback()
@@ -71,19 +88,19 @@ double primary() {           // deal with numbers and parenthesis
       if (t.kind != '}') error("'}' expected");
         return d;
     }
-    case '8':                   // we use '8' to represent a number
+    case number:                   // we use '8' to represent a number
       return t.value;         // return the number's value
     case '-':
       return -primary();
     case '+':
       return primary();
-    
+
     default:
       error("primary expected");
   }
 }
 
-double secondary() { // ex 3 - Add a factorial operator '!'
+double secondary() {        // ex 3 - Add a factorial operator '!'
   double left = primary();
   Token t = ts.get();
 
@@ -150,27 +167,37 @@ double expression() {         // deal with + and -
   }
 }
 
+void clean_up_mess() {
+  ts.ignore(print);
+}
+
+const char prompt = '>';
+
+void calculate() {
+  double val = 0;
+  while (cin)
+    try {
+    cout << prompt;
+    Token t = ts.get();
+    while (t.kind == print) t = ts.get();
+    if (t.kind == quit) return;
+    ts.putback(t);
+    cout << "=" << expression() << "\n";
+    }
+    catch (exception& e) {
+      cerr << e.what() << "\n";
+      clean_up_mess();
+    }
+}
+
 int main() {
   try {
-    double val = 0;
-    while (cin) {
-      cout << ">";
-      Token t = ts.get();
-
-      if (t.kind == ';') t = ts.get();       // 'q' for "quit"
-      if (t.kind == 'q') {              // ';' for "print now"
-        keep_window_open();
-        return 0;
-      }
-      ts.putback(t);
-      cout << "=" << expression() << "\n";
-    }
+    calculate();
     keep_window_open();
     return 0;
   }
   catch(exception& e) {
     cerr << "Exception: " << e.what() << '\n';
-    cout << "Please, enter the character \"~\" to close the window.\n";
     keep_window_open("~~");
   }
   catch(...) {
