@@ -60,7 +60,7 @@ void fillDist(double *data , int *bin , double min , double max , int n, int nDa
   }
 }
 /*
-  Prints the histogram.
+  Prints the histogram. It builds a 2D array of characters number_of_bins x height.
 */
 void printHisto(int *bin , int n) {
   int i, j, max;
