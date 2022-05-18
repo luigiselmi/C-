@@ -5,6 +5,10 @@
 
   $ cc interpolation.c parse_data_points.c -o interpolation
 
+  Execute using the command:
+
+  $ ./interpolation interpol.txt
+
 */
 #include <stdio.h>
 #include <stdlib.h> // exit()
