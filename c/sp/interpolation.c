@@ -11,39 +11,34 @@ struct point {
 };
 
 int parse(FILE *source, struct point data[]);
+FILE *_open(int argc, char *argv[]);
 
 int main(int argc, char *argv[]) {
    FILE *fp;  // pointer to a file
-   char *prog = argv[0];
-   int N;
+   int N; // number of data points
 
-   if (argc == 1) {// no files to open
+   if (argc == 1) { // no files to open
       printf("The input data file is missing.");
       exit(1);
    }
    else
-      while (--argc > 0)
-         if ((fp = fopen(*++argv, "r")) == NULL) {
-            fprintf(stderr, "The file \'%s\' cannot be opened.\n", *argv);
-            exit(1);
-         }
-         else {
-            fscanf(fp, "%d", &N);
-            struct point data[N];
-            parse(fp, data);
-            for (int i = 0; i < N; i++)
-               printf("%d) x = %f, y = %f\n", i, data[i].x, data[i].y);
-            fclose(fp);
-         }
+     fp = _open(argc, argv);
 
-   if (ferror(stdout)) {
-      fprintf(stderr, "%s: error writing on stdout.\n", prog);
-      exit(2);
-   }
+   fscanf(fp, "%d", &N);  // reads the number of lines
+   struct point data[N];
+   parse(fp, data);
+
+   for (int i = 0; i < N; i++)
+      printf("%d) x = %f, y = %f\n", i, data[i].x, data[i].y);
+
+   fclose(fp);
 
    exit(0);
 }
-FILE *open(int argc, char *argv[]) {
+/*
+  Opens the input data file and return its pointer.
+*/
+FILE *_open(int argc, char *argv[]) {
   FILE *fp;
   while (--argc > 0)
    if ((fp = fopen(*++argv, "r")) == NULL) {
