@@ -10,8 +10,10 @@
   2.0, 3.0
   2.5, 3.5
 
-  The program loads the data point in an array
-  of struct and then prints them.
+  The program provides two functions, one to open
+  the input data file and one to load the data point
+  in an array of struct. Uncomment the main function
+  to test them.
 */
 #include <stdio.h>
 #include <stdlib.h> // exit()
@@ -21,6 +23,7 @@ struct point {
   double y;
 };
 
+/*
 int parse(FILE *source, struct point data[]);
 FILE *_open(int argc, char *argv[]);
 
@@ -46,6 +49,7 @@ int main(int argc, char *argv[]) {
 
    exit(0);
 }
+*/
 /*
   Opens the input data file and return its pointer.
 */

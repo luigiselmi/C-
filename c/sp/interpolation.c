@@ -1,14 +1,16 @@
 /*
   Computes the linear interpolation from data
   read on a file using the least squares method.
+  Compile using the command:
+
+  $ cc interpolation.c parse_data_points.c -o interpolation
+
 */
 #include <stdio.h>
 #include <stdlib.h> // exit()
+#include "parse_data_points.h" // declare the functions used to read
+                               // the input file and to create an array of points
 
-struct point {
-  double x;
-  double y;
-};
 
 int parse(FILE *source, struct point data[]);
 FILE *_open(int argc, char *argv[]);
@@ -34,30 +36,4 @@ int main(int argc, char *argv[]) {
    fclose(fp);
 
    exit(0);
-}
-/*
-  Opens the input data file and return its pointer.
-*/
-FILE *_open(int argc, char *argv[]) {
-  FILE *fp;
-  while (--argc > 0)
-   if ((fp = fopen(*++argv, "r")) == NULL) {
-         fprintf(stderr, "The file \'%s\' cannot be opened.\n", *argv);
-         exit(1);
-   }
-
-   return fp;
-}
-/*
-  Parses the input data file and fills an array of points.
-*/
-int parse(FILE *source, struct point data[]) {
-   double x, y;
-   int line, i = 0;
-   while ((line = fscanf(source, "%lf, %lf", &x, &y)) != EOF) {
-      data[i].x = x;
-      data[i].y = y;
-      i++;
-   }
-   return 0;
 }
