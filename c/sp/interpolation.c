@@ -39,11 +39,11 @@ int main(int argc, char *argv[]) {
      S += 1. / s2;
    }
 
-   double Stt, t[N], A, B, sigma_A, sigma_B;
+   double Stt, tt, A, B, sigma_A, sigma_B;
    for (int i = 0; i < N ; i++) {
-     t[i] = (data[i].x - Sx / S) / sigma;
-     Stt += t[i] * t[i];
-     B += t[i] * data[i].y / sigma;
+     tt = (data[i].x - Sx / S) / sigma;
+     Stt += tt * tt;
+     B += tt * data[i].y / sigma;
    }
 
    B /= Stt;
