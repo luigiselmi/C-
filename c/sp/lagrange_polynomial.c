@@ -24,7 +24,6 @@ double lagrange(double y, int n, struct point data[]);
 int main(int argc, char *argv[]) {
    FILE *fp;  // pointer to a file
    int N; // number of data points
-   const double sigma = 0.01; // measurement error (or variance)
 
    if (argc == 1) { // no files to open
       printf("The input data file is missing.");
