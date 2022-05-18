@@ -1,6 +1,6 @@
 /*
-  Computes the linear interpolation from data
-  read from a file using the least squares method.
+  Computes the linear interpolation y = A + Bx from
+  data read from a file using the least squares method.
   Compile using the command:
 
   $ cc interpolation.c parse_data_points.c -o interpolation
