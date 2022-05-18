@@ -32,7 +32,8 @@ int main(int argc, char *argv[]) {
    parse(fp, data);
    fclose(fp);
 
-   double x_0 = 1.5, y_0 = -0.25;
+   double x_0 = 1.5;
+   double y_0 = -0.25; // value to be compared with the lagrange approximation y
    double y = lagrange(x_0, N, data);
 
    printf("y = %.3f, y - y0 = %.3f\n", y, y - y_0);
