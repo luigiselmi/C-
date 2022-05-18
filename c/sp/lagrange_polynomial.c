@@ -5,6 +5,12 @@
 
   $ cc lagrange_polynomial.c parse_data_points.c -o lagrange
 
+  For testing use the data in lagrange_data.txt that
+  contains three data points of the equation y = (x - 1) * (x - 2)
+  Execute using the command
+
+  $ ./lagrange lagrange_data.txt
+
 */
 #include <stdio.h>
 #include <stdlib.h> // exit()
