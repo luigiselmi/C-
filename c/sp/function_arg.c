@@ -5,7 +5,7 @@
   main function computes the derivative of a
   function reducing each time the delta. It is
   shown that the value of the derivative gets
-  wrong when the delta is too small. 
+  wrong when the delta is too small.
 */
 #include <stdio.h>
 
@@ -17,7 +17,7 @@ int main () {
   printf ("delta | derivative\n\n");
   while (delta > 1.e-18) {
     printf ("%e %f\n", delta , derivative(func , 1., delta ));
-    epsilon /= 10.;
+    delta /= 10.;
   }
 }
 
