@@ -22,7 +22,7 @@ int main () {
   int m = 10; // number of segments in which the interval [a, b] is divided.
   printf ("Num. segments | Integral\n\n");
   while (m < 1e+6) {
-    printf ("%-15d %5.4f\n", m, integral(func , a, b, m));
+    printf ("%-15d %.4f\n", m, integral(func , a, b, m));
     m *= 10;
   }
 }
