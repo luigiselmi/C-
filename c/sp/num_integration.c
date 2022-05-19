@@ -13,13 +13,16 @@
 
 double func(double);
 double integral(double (*f)(double), double a, double b, int m);
-
+/*
+  The main function computes the integrals of a function
+  dividing the integral in smaller segments each time.
+*/
 int main () {
   double a = 0.0, b = 1.0;
   int m = 10; // number of segments in which the interval [a, b] is divided.
   printf ("Num. segments | Integral\n\n");
   while (m < 1e+6) {
-    printf ("%d %f\n", m, integral(func , a, b, m));
+    printf ("%-15d %5.4f\n", m, integral(func , a, b, m));
     m *= 10;
   }
 }
