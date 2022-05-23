@@ -84,7 +84,7 @@ double readDouble(char *message) {
 /*
   Initializes the harmonic oscillator: position x0 and velocity v0.
 */
-struct State *initHarmonicOscillator(double x0 , double v0) {
+struct State *initHarmonicOscillator(double x0, double v0) {
   static struct State init_state;
   init_state.x = x0;
   init_state.v = v0;
@@ -103,16 +103,16 @@ struct State *eulerCromer(double dt, double omega2, struct State *state) {
 /* Computes the sum of the kinetic and the potential energy of the oscillator.
    We do not compute E but compute 2 E / m
 */
-double energy(double omega2 , struct State *state) {
+double energy(double omega2, struct State *state) {
   double localEnergy;
   double kineticEnergy = (*state).v * (*state).v;
-  localEnergy = kineticEnergy + potentialEnergy(omega2 , (*state).x);
+  localEnergy = kineticEnergy + potentialEnergy(omega2, (*state).x);
   return localEnergy ;
 }
 /*
   Updates the velocity of the oscillator.
 */
-double forceOscillator (double omega2 , double x) {
+double forceOscillator (double omega2, double x) {
   return - omega2 * x;
 }
 
