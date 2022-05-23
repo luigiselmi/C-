@@ -12,7 +12,6 @@
   h is the length of the step (e.g. time)
 */
 #include <stdio.h>
-#include <math.h>
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
