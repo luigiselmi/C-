@@ -46,7 +46,7 @@ int main() {
   printf("# dt = %g total time = %g\n", dt, totalTime);
   printf("# omega2 = %g number of steps = %d\n", omega2, numberOfSteps);
 
-  state = *initHarmonicOscillator (x0 , v0);
+  state = *initHarmonicOscillator (x0, v0);
   printf ("# Initial conditions x0 = %g v0 = %g\n", state.x, state.v);
 
   energy0 = energy(omega2, &state);
@@ -70,7 +70,7 @@ long int readLong(char *message) {
   long int inputData;
   printf ("# %s\n", message);
   fflush(stdout);
-  scanf ("%ld",& inputData);
+  scanf ("%ld", &inputData);
   return inputData;
 }
 
@@ -96,7 +96,7 @@ struct State *initHarmonicOscillator(double x0 , double v0) {
 */
 struct State *eulerCromer(double dt, double omega2, struct State *state) {
   static struct State next_state;
-  next_state.v = (*state).v + forceOscillator (omega2, (* state).x) * dt;
+  next_state.v = (*state).v + forceOscillator(omega2, (* state).x) * dt;
   next_state.x = state ->x + next_state.v * dt;
   return &next_state;
 }
