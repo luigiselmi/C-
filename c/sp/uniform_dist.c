@@ -11,11 +11,11 @@
                      I(i + 1) = (aI(i) + b) % m
 
   where the multiplier a, the increment b and the modulo m are
-  constant integers, m being the modulo, and i is the step index.
-  The main function prints the period T, that is the number of steps
-  after which the random number repeats itself. A user may want a
-  long series of pseudo-random numbers, therefore the modulo should
-  be large since T <= m.
+  constant integers, and i is the step index. The main function
+  prints the period T, that is the number of steps after which
+  the random number repeats itself. A user may want a long series
+  of pseudo-random numbers, therefore the modulo should be large
+  since T <= m.
 */
 #include <stdlib.h>
 #include <stdio.h>
