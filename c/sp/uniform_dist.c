@@ -10,9 +10,12 @@
 
                      I(i + 1) = (aI(i) + b) % m
 
-  where a, b and m are constant integers, m being the modulo, and
-  i is the step index. The main function prints the period T, that
-  is the number of steps after which the random number repeats itself.
+  where the multiplier a, the increment b and the modulo m are
+  constant integers, m being the modulo, and i is the step index.
+  The main function prints the period T, that is the number of steps
+  after which the random number repeats itself. A user may want a
+  long series of pseudo-random numbers, therefore the modulo should
+  be large since T <= m.
 */
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,7 +23,7 @@
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE -9
-#define MAX_M 1024
+#define MAX_M 1000
 
 typedef long int RANDOM_TYPE;
 
@@ -39,7 +42,7 @@ int main(void) {
   randomNumber = seed;
   randomStore [0] = randomNumber;
   if (m > MAX_M) {
-    printf ("Error: m is too large .\n");
+    printf ("Error: m is too large.\n");
     exit(EXIT_FAILURE );
   }
   i = 1;
