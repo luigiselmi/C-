@@ -54,14 +54,14 @@ int main(void) {
   randomNumber = seed;
   position = 0;
 
-  for(i = 0; i < numberOfSteps; i++){
+  for (i = 0; i < numberOfSteps; i++) {
     double r;
     fprintf(fDat, "%d %d\n", i, position);
     randomNumber = a * randomNumber;
     r = (double)randomNumber * iDoubleM;
-    if(r < 0.5){
+    if (r < 0.5) {
       position += 1;
-    }else{
+    } else {
       position -= 1;
     }
   }
