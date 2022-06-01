@@ -4,8 +4,10 @@
 	the position at each step on a file. The final position depends
 	on the seed. The data can be plotted using gnuplot and the
 	command:
-	 
+
 	gnuplot> plot 'rw1d.dat'
+
+	Credit: Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,7 +45,7 @@ int main(void) {
   fprintf(fDat, "# a = %Lu m = 2^64 I0 = %Lu\n", a, seed);
   fprintf(fDat, "# Number of steps made by the traveler: %d\n", numberOfSteps);
 
-  if(sizeof(RANDOM_TYPE)<8){
+  if(sizeof(RANDOM_TYPE) < 8){
     printf("Error: RANDOM_TYPE must be at least 8 bytes,"
 	   " but it's  %d\n", sizeof(RANDOM_TYPE));
     exit(MY_EXIT_FAILURE);
