@@ -4,8 +4,10 @@
 	At each step x the program takes a sample for each random walk,
 	computes the sum of x^2 and its error x^4 and put them in an array.
 	After the random walks are completed, computes the average values of
-	x^2 and its error at each step and writes the values on a file. The
-	data can be plotted using gnuplot and the command:
+	x^2 and its error at each step and writes the values on a file.
+  The average values of x^2 at step t, <x^2(t)> represents the
+	(squared) probability for the traveler to be at position x.
+	The data can be plotted using gnuplot and the command:
 
 	gnuplot> plot 'rw1d_ave.dat'
 
