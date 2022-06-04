@@ -110,4 +110,5 @@ int main(void) {
     fprintf(fDat, "%ld %lg %lg\n", i+1, x2Average[i], x2Error[i]);
   }
   fclose(fDat);
+	printf("Step = %ld, <x^2> = %lg, <delta_x^2> = %lg\n", i, x2Average[i], x2Error[i]);
 }
