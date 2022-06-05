@@ -34,7 +34,7 @@
   The application also stores in another file, rw2d_prob.dat, the position
 	(x1, x2) at each step of any random walk (sample) that is a power of 10
 	between 1 and 5, that is 10, 100, 1000, 10000 and 100000. We can plot the
-	distribution of the positions achieved by the random traveler after, for
+	distribution of the positions reached by the random traveler after, for
 	instance 100 steps, in all the random walks. The position reached after
 	100 steps will be distributed around a value of (100/2)^(1/2), that is 7.07.
 	We can filter the data from the file to consider only the position after 100
@@ -71,7 +71,7 @@
 	we see that it's much less likely. We can compute the values for all the
 	points in the square lattice, within the ranges we have set above, to have
 	the probability distribution for t = 100 or for any other value of t for
-	which we have the data.  
+	which we have the data.
 
 	Credit: Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
 */
