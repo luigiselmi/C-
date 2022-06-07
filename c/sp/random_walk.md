@@ -53,7 +53,7 @@ then we plot the filtered data
 ```
 gnuplot> plot 'rw2d_prob_100.dat' using 6:8 linecolor 'blue'
 ```
-![Arrival points of the traveler at each simulation 100 steps](2d_random_walk_position_after_100_steps.png)
+![Arrival points of the traveler at each simulation 100 steps](images/2d_random_walk_position_after_100_steps.png)
 
 The plot shows the distribution of the nodes the traveler went through after 100 steps.
 
@@ -61,7 +61,7 @@ If we repeat the experiment filtering the data to extract the position
 after, let's say, 10000 step we will see that the distribution is much
 larger and the points are more dispersed.
 
-![Arrival points of the traveler at each simulation 10000 steps](2d_random_walk_position_after_100000_steps.png)
+![Arrival points of the traveler at each simulation 10000 steps](images/2d_random_walk_position_after_100000_steps.png)
 
 
 Another experiment is to compute the number of times a certain position
