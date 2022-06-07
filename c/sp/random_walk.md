@@ -85,5 +85,9 @@ We define the variables that will be used in the simulations.
 - V = $L^2$ is the total number of nodes of the lattice
 - N = ρV is the total number of particles.
 
+The occupation function η(x1, x2) assumes values in the set {0, 1} and tells us when
+a node in position (x1, x2) in the lattice is occupied by a particle, so that η(x1, x2) = 1,
+or when it is not and η(x1, x2) = 0.
+
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
