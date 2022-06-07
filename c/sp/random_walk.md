@@ -118,9 +118,9 @@ all particles at time t by performing a certain number S of travels so that
 
 $$ &lt;\Delta R(t)^2&gt;= \frac{1}{S} \sum_S \Delta R(t)^2$$
 
-For large enough values of t we can compute the diffusion coefficient for a specific
+For large enough values of t we can compute the diffusion coefficient D(ρ) for a specific
 value of the density ρ
 
-$$$$ 
+$$D(ρ) = \lim_{t to ∞}D(ρ, t)$$ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
