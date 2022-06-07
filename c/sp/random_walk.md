@@ -82,7 +82,7 @@ We define the variables that will be used in the simulations.
 
 - ρ is the probability of occupation of a lattice's node
 - L is the number of nodes per lattice row (or column)
-- V = L^{2} is the total number of nodes of the lattice
+- V = $L^2$ is the total number of nodes of the lattice
 - N = ρV is the total number of particles.
 
 ## Credits
