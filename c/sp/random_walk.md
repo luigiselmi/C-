@@ -123,6 +123,11 @@ value of the density ρ
 
 $$D(ρ) = \lim_{t \to ∞}D(ρ, t) = \lim_{t \to ∞} \frac{1}{2Dt}&lt;\Delta R(t)^2&gt;$$
 
-where D is the dimensions of the lattice, that is D = 2 in our case. 
+where D is the dimensions of the lattice, so D = 2 in our case.
+
+We can perform a certain number of simulations for an increasing value of the time t to analyze
+the behavior of the density for an increasing number of steps (i.e. time). For instance we
+can measure  $&lt;\Delta R(t)^2&gt;$ at times that are multiples of 10 of each other and verify
+that the diffusion coefficient converges to a constant value.
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
