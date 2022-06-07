@@ -121,6 +121,8 @@ $$ &lt;\Delta R(t)^2&gt; = \frac{1}{S} \sum_S \Delta R(t)^2$$
 For large enough values of t we can compute the diffusion coefficient D(ρ) for a specific
 value of the density ρ
 
-$$D(ρ) = \lim_{t \to ∞}D(ρ, t) = \lim_{t \to ∞} \frac{1}{2Dt}&lt;\Delta R(t)^2&gt;$$ 
+$$D(ρ) = \lim_{t \to ∞}D(ρ, t) = \lim_{t \to ∞} \frac{1}{2Dt}&lt;\Delta R(t)^2&gt;$$
+
+where D is the dimensions of the lattice, that is D = 2 in our case. 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
