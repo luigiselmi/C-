@@ -128,6 +128,6 @@ where D is the dimensions of the lattice, so D = 2 in our case.
 We can perform a certain number of simulations for an increasing value of the time t to analyze
 the behavior of the density for an increasing number of steps (i.e. time). For instance we
 can measure  $&lt;\Delta R(t)^2&gt;$ at times that are multiples of 10 of each other and verify
-that the diffusion coefficient converges to a constant value.
+that the diffusion coefficient D(ρ) converges to a constant value as shown in the figure.
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
