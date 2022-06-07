@@ -79,7 +79,11 @@ which we have the data.
 Our aim is to compute the mass diffusivity, or diffusion coefficient, of a system
 of N particles on a square lattice by performing some simulations using the C code.
 We define the variables that will be used in the simulations.
-- $ρ$
+
+- $ρ$ is the probability of occupation of a lattice's node
+- L is the number of nodes per lattice row (or column)
+- V = L^2 is the total number of nodes of the lattice
+- N = ρV is the total number of particles.
 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
