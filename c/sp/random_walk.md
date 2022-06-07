@@ -116,6 +116,6 @@ $$ ΔR(t)^2 = \frac{1}{N} \sum_\alpha ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2
 In order to minimize the error we can compute the mean quadratic distance traveled by
 all particles at time t by performing a certain number S of travels so that
 
-$$ &lt;\Delta R_\alpha(t)^2&gt;= \frac{1}{S}$$
+$$ &lt;\Delta R(t)^2&gt;= \frac{1}{S} \sum_S \Delta R(t)^2$$
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
