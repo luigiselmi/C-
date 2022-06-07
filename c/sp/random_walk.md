@@ -107,10 +107,15 @@ we have to take into account the boundary conditions so that
 Each particle α can move at time t to an adjacent free node with equal probability, 1/4
 for a square lattice. The quadratic distance between two adjacent nodes is
 
-$$ ΔR(t)^2 = (x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2 $$
+$$ ΔR_\alpha(t)^2 = (x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2 $$
 
-The average distance traveled by all particles in a unit time is
+The average distance traveled by all particles at time t is
 
-$$ ΔR_\alpha(t)^2 = \frac{1}{N} \sum_\alpha ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2) $$
+$$ ΔR(t)^2 = \frac{1}{N} \sum_\alpha ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2) $$
+
+In order to minimize the error we can compute the mean quadratic distance traveled by
+all particles at time t by performing a certain number S of travels so that
+
+$$ \Delta(R_\alpha(t)^2 = $$
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
