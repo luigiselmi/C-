@@ -76,5 +76,10 @@ the probability distribution for t = 100 or for any other value of t for
 which we have the data.
 
 ## Lattice gas
+Our aim is to compute the mass diffusivity, or diffusion coefficient, of a system
+of N particles on a square lattice by performing some simulations using the C code.
+We define the variables that will be used in the simulations.
+- $ρ$
 
-Credit: Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
+## Credits
+Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
