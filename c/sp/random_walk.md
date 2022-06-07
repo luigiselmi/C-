@@ -87,7 +87,15 @@ We define the variables that will be used in the simulations.
 
 The occupation function η(x1, x2) assumes values in the set {0, 1} and tells us when
 a node in position (x1, x2) in the lattice is occupied by a particle, so that η(x1, x2) = 1,
-or when it is not and η(x1, x2) = 0.
+or when it is not and η(x1, x2) = 0. We can also define a spin function σ(x1, x2) to represent the same concept using values in the set {-1, 1} so that for an empty node σ(x1, x2) = -1 and
+for an occupied node σ(x1, x2) = 1. The relation between the two representations is given by the equation
 
+σ(x1, x2) = 2 * η(x1, x2) - 1
+
+The total number of occupied nodes is equal to the number of particles and is assumed constant   
+
+N = ρ * V = ∑η(x1, x2)
+
+ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
