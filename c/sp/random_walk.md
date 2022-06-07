@@ -99,6 +99,14 @@ N = ρ * V = ∑η(x1, x2)
 where the summation is made over the set of the lattice's nodes.
 A particle α, of the total N particles, is located at the time t in one of the N nodes.
 For each particle we have to take into account the position occupied at time t and whether
-it moves at time t + 1 to an adjacent node.   
+it moves at time t + 1 to an adjacent node. For the correct location of a particle
+we have to take into account the boundary conditions so that
+
+(x1, x2) = (x1 +/- L, x2) = (x1, x2 +/- L)
+
+Each particle α can move at time t to an adjacent free node with equal probability, 1/4
+for a square lattice. The quadratic distance between two adjacent nodes is
+
+$$ΔR(t)^2 = (x(t)_1 - x(0)_1)^2$$ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
