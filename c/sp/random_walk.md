@@ -107,6 +107,10 @@ we have to take into account the boundary conditions so that
 Each particle α can move at time t to an adjacent free node with equal probability, 1/4
 for a square lattice. The quadratic distance between two adjacent nodes is
 
-$$ΔR(t)^2 = (x(t)_1 - x(0)_1)^2$$ 
+$$ ΔR(t)^2 = (x(t)_1 - x(0)_1)^2 + (x(t)_2 - x(0)_2)^2 $$
+
+The average distance traveled by all particles in a unit time is
+
+$$ ΔR(t)^2 = \sum (x(t)_1 - x(0)_1)^2 + (x(t)_2 - x(0)_2)^2 $$ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
