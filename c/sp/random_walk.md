@@ -132,5 +132,7 @@ that the diffusion coefficient D(ρ) converges to a constant value as shown in t
 
 ![mean quadratic distance](images/deltaR2_lattice_gas.png)
 
+The diffusion coefficient is the angular coefficient of the line that represents the mean quadratic distance $&lt;\Delta R(t)^2&gt;$.
+
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
