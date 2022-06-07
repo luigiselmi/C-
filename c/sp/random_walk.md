@@ -129,5 +129,8 @@ We can perform a certain number of simulations for an increasing value of the ti
 the behavior of the density for an increasing number of steps (i.e. time). For instance we
 can measure  $&lt;\Delta R(t)^2&gt;$ at times that are multiples of 10 of each other and verify
 that the diffusion coefficient D(ρ) converges to a constant value as shown in the figure.
+
+![mean quadratic distance](images/deltaR2_lattice_gas.png)
+
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
