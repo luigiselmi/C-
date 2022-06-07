@@ -16,17 +16,17 @@ The decimal point is set just after the most significant digit. From right
 to left the contribution of each binary digit at position n
 is given by
 
-´´´´
+```
 bit(n) * 2^(-n)
-´´´´
+```
 and the mantissa is the sum of all the 23 digits plus 1, the
 hidden digit.
 
-´´´´
+```
 float sum = 1.0;
 for (int n = 23; n > 0; ++n)
  sum += bit[n] * 2^(-n);
-´´´´
+```
 ## Decimal to binary
 What we are more interested in to understand how floating-point arithmetic
 works is how to represent a decimal value as floating-point with 32 binary
