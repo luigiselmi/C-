@@ -96,6 +96,9 @@ The total number of occupied nodes is equal to the number of particles and is as
 
 N = ρ * V = ∑η(x1, x2)
 
- 
+where the summation is made over the set of the lattice's nodes.
+A particle α, of the total N particles, is located at the time t in one of the N nodes.
+For each particle we have to take into account the position occupied at time t and whether
+it moves at time t + 1 to an adjacent node.   
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
