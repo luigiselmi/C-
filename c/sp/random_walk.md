@@ -117,5 +117,10 @@ In order to minimize the error we can compute the mean quadratic distance travel
 all particles at time t by performing a certain number S of travels so that
 
 $$ &lt;\Delta R(t)^2&gt;= \frac{1}{S} \sum_S \Delta R(t)^2$$
+
+For large enough values of t we can compute the diffusion coefficient for a specific
+value of the density ρ
+
+$$$$ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
