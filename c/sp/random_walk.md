@@ -111,6 +111,6 @@ $$ ΔR(t)^2 = (x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2 $$
 
 The average distance traveled by all particles in a unit time is
 
-$$ ΔR_\alpha(t)^2 = \sum ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2) $$
+$$ ΔR_\alpha(t)^2 = \sum_α ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2) $$
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
