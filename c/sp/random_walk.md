@@ -116,11 +116,11 @@ $$ ΔR(t)^2 = \frac{1}{N} \sum_\alpha ((x_1(t) - x_1(0))^2 + (x_2(t) - x_2(0))^2
 In order to minimize the error we can compute the mean quadratic distance traveled by
 all particles at time t by performing a certain number S of travels so that
 
-$$ &lt;\Delta R(t)^2&gt;= \frac{1}{S} \sum_S \Delta R(t)^2$$
+$$ &lt;\Delta R(t)^2&gt; = \frac{1}{S} \sum_S \Delta R(t)^2$$
 
 For large enough values of t we can compute the diffusion coefficient D(ρ) for a specific
 value of the density ρ
 
-$$D(ρ) = \lim_{t \to ∞}D(ρ, t)$$ 
+$$D(ρ) = \lim_{t \to ∞}D(ρ, t) = \lim_{t \to ∞} \frac{1}{2Dt}&lt;\Delta R(t)^2&gt;$$ 
 ## Credits
 Barone et al. - Scientific Programming, https://chimera.roma1.infn.it/SPENG/
