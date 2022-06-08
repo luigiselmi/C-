@@ -6,6 +6,7 @@ The random walk on a one-dimensional lattice is a stochastic process that can be
   <img src="images/1d_random_walk.png" width="640" height="476" alt="Random walk in one dimension">
 </p>
 
+A stochastic process is defined by a series of states of the system in an N-dimensional lattice. A state is represented by a lattice node. The transition from one node to another is given by a probability. For example, in a two-dimensional square lattice, the probability of transition from one node to another adjacent node is 1/4. A state of the system may or may not depend on the previous state, in the first case we speak of the Markov process, in the second case of random walk or Brownian process or more generally martingale. From theory and from simulations, it is possible to calculate the distance traveled from the origin by a drunk traveler on the lattice which is proportional to the square root of the time, as can be seen in the graph that shows the linear trend with respect to time of the square of the distance from the origin in a statistical simulation of 10,000 journeys, each consisting of 100,000 steps (units of time)
 
 ## Single particle
 The program performs a number of random walks on a 2-dimensional
