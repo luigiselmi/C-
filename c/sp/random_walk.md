@@ -1,5 +1,9 @@
 Random walk on a square lattice
 ===============================
+The random walk on a one-dimensional lattice is a stochastic process that can be represented as a continuous but not differentiable function. It can be used to model many random processes in which the future state is independent of the present state, such as the stock market prices of a portfolio such as S & P500 which can be represented as the sum of an increasing linear function and a one-dimensional random process.
+
+![one-dimensional random walk](images/1d_random_walk.png)  
+
 ## Single particle
 The program performs a number of random walks on a 2-dimensional
 square lattice. At each step the traveler can move eastward,
