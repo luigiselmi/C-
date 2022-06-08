@@ -3,8 +3,9 @@ Random walk on a square lattice
 The random walk on a one-dimensional lattice is a stochastic process that can be represented as a continuous but not differentiable function. It can be used to model many random processes in which the future state is independent of the present state, such as the stock market prices of a portfolio such as S & P500 which can be represented as the sum of an increasing linear function and a one-dimensional random process.
 
 <p align="center">
-  <img width="640" height="476" src="images/1d_random_walk.png">
+  <img src="images/1d_random_walk.png" width="640" height="476" alt="Random walk in one dimension">
 </p>
+
 
 ## Single particle
 The program performs a number of random walks on a 2-dimensional
@@ -59,7 +60,9 @@ then we plot the filtered data
 ```
 gnuplot> plot 'rw2d_prob_100.dat' using 6:8 linecolor 'blue'
 ```
-![Arrival points of the traveler at each simulation 100 steps](images/2d_random_walk_position_after_100_steps.png)
+<p align="center">
+  <img src="images/2d_random_walk_position_after_100_steps.png" width="640" height="476" alt="Arrival points of the traveler at each simulation 100 steps">
+</p>
 
 The plot shows the distribution of the nodes the traveler went through after 100 steps.
 
@@ -67,8 +70,9 @@ If we repeat the experiment filtering the data to extract the position
 after, let's say, 10000 step we will see that the distribution is much
 larger and the points are more dispersed.
 
-![Arrival points of the traveler at each simulation 10000 steps](images/2d_random_walk_position_after_100000_steps.png)
-
+<p align="center">
+  <img src="images/2d_random_walk_position_after_100000_steps.png" width="640" height="476" alt="Arrival points of the traveler at each simulation 10000 steps">
+</p>
 
 Another experiment is to compute the number of times a certain position
 in the square lattice has been reached by the random traveler after a
@@ -143,7 +147,9 @@ the behavior of the density for an increasing number of steps (i.e. time). For i
 can measure  $&lt;\Delta R(t)^2&gt;$ at times that are multiples of 10 of each other and verify
 that the diffusion coefficient D(ρ) converges to a constant value as shown in the figure.
 
-![mean quadratic distance](images/deltaR2_lattice_gas.png)
+<p align="center">
+  <img src="images/deltaR2_lattice_gas.png" width="634" height="439" alt="Mean quadratic distance">
+</p>
 
 The diffusion coefficient is the angular coefficient of the line that represents the mean quadratic distance $&lt;\Delta R(t)^2&gt;$.
 
