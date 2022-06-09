@@ -8,6 +8,10 @@ The random walk on a one-dimensional lattice is a stochastic process that can be
 
 A stochastic process is defined by a series of states of the system in an N-dimensional lattice. A state is represented by a lattice node. The transition from one node to another is given by a probability. For example, in a two-dimensional square lattice, the probability of transition from one node to another adjacent node is 1/4. A state of the system may or may not depend on the previous state, in the first case we speak of the Markov process, in the second case of random walk or Brownian process or more generally martingale. From theory and from simulations, it is possible to calculate the distance traveled from the origin by a drunk traveler on the lattice which is proportional to the square root of the time, as can be seen in the graph that shows the linear trend with respect to time of the square of the distance from the origin in a statistical simulation of 10,000 journeys, each consisting of 100,000 steps (units of time)
 
+<p align="center">
+  <img src="images/x2_2d_random_walk.png" width="640" height="476" alt="Quadratic distance of one particle">
+</p>
+
 The configuration space of Statistical Mechanics for a mechanical system with N particles is also a lattice (at 6N dimensions) in which the system occupies a cell at each instant of time. There is often confusion between the statistics of one variable, even multidimensional, and a stochastic processes (e.g. Brownian or Markovian). In the first case it is a question of repeated measurements of a system in a stationary state over time of which it is interesting to evaluate the average value and the error of the measurement. In the second case, the system changes over time, for example in its position, and each state represented by a point (or cell) in the configuration space is a random variable and the probability that the system goes to each point of that space is calculated . The probability that a system occupying a point P1 at time t occupies a point P2 at time t + 1 depends on the type of stochastic process: Brownian (no dependence on the previous state, apart from the position) or Markovian (dependence conditional on the state previous one).
 
 ## Single particle
@@ -76,6 +80,8 @@ larger and the points are more dispersed.
 <p align="center">
   <img src="images/2d_random_walk_position_after_100000_steps.png" width="640" height="476" alt="Arrival points of the traveler at each simulation 10000 steps">
 </p>
+
+The traveler moves further and further away from the origin and the probability that he will remain in his vicinity as time passes decreases. Each point represents a complete random walk, after 100,000 steps in this graph, and after 100 in the previous one. Each graph contains 10000 points.
 
 Another experiment is to compute the number of times a certain position
 in the square lattice has been reached by the random traveler after a
