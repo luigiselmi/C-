@@ -35,7 +35,7 @@ gnuplot> plot 'rw2d_ave.dat'
 From the plot it can be seen that <x^2(t)> is linear according to the
 theory that says
 
-<x^2(t)> = a^2 * t / D
+$$<\x^2(t)> = \a^2 \frac{t}{D}$$
 
 where a is the length of the edges between two nodes of the square
 lattice (in our case a = 1), t is the step (or time), and D is the
