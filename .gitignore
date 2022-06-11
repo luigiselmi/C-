@@ -2,4 +2,8 @@
 *.cbp
 *.depend
 *sp.layout
+.autotools
+.cproject
+.project
+.settings
 
