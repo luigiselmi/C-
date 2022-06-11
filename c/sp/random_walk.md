@@ -45,7 +45,9 @@ lattice as a function of the position x = (x1, x2) and the step (time)
 
 $$ P(x, t) = (\frac{D}{2 \pi t})^\frac{D}{2} \exp(-\frac{Dx^2}{2ta^2}) $$
 
-so that <x^2(t)> = S(x^2 * P(x, t)dx)  (S represents the integration operator)
+so that
+
+$$ &lt; x^2(t) &gt; = \int x^2 * P(x, t)dx $$
 
 The application also stores in another file, rw2d_prob.dat, the position
 (x1, x2) at each step of any random walk (sample) that is a power of 10
