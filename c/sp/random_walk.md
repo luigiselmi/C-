@@ -32,10 +32,10 @@ The <x^2(t)> data can be plotted using gnuplot and the command:
 ```
 gnuplot> plot 'rw2d_ave.dat'
 ````
-From the plot it can be seen that $&lt;x^2(t)&gt;$ is linear according to the
+From the plot it can be seen that $ &lt; x^2(t) &gt; $ is linear according to the
 theory that says
 
-$$&lt;x^2(t)&gt; = a^2 \frac{t}{D}$$
+$$ &lt; x^2(t) &gt; = a^2 \frac{t}{D} $$
 
 where a is the length of the edges between two nodes of the square
 lattice (in our case a = 1), t is the step (or time), and D is the
