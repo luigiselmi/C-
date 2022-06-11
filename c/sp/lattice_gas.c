@@ -1,5 +1,7 @@
 /*
-
+  Our aim is to compute the mass diffusivity, or diffusion coefficient,
+	of a system of N particles on a square lattice by performing some
+	simulations. 
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -232,7 +234,7 @@ void updateLattice(long thisN) {
     randomNumber = a * randomNumber;
     r = (double)randomNumber * iDoubleM;
     thisParticle = (long)(r * (double)thisN);
-    if (thisParticle >= thisN) thisParticle = thisN-1;
+    if (thisParticle >= thisN) thisParticle = thisN - 1;
     randomNumber = a * randomNumber;
     r = (double)randomNumber * iDoubleM;
     this_direction = (long)(r * (double)(2 * DIM));
@@ -244,7 +246,7 @@ void updateLattice(long thisN) {
     y = positionOfParticle[thisParticle][1];
     trueX = positionOfParticle[thisParticle][0];
     trueY = positionOfParticle[thisParticle][1];
-		
+
     #ifdef MY_DEBUG
     if( (x >= L) || ( y >= L) || (trueX == MY_EMPTY) || (trueY == MY_EMPTY) ) {
       printf("Internal error: position too far\n");
