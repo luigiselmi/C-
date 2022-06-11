@@ -30,4 +30,4 @@ $ ./HelloWorld
 ## Eclipse CDT (C/C++ Development Tooling)
 The main problem about developing using a text editor is that one cannot use the debugger.
 Eclipse, the Java IDE, can be used to develop C/C++ application as well. One needs to install
-Java in order to execute the IDE, then the compiler and the debugger. In Eclipse CDT an executable is created in a project that includes all the required C or C++ files, one of which contains the main() function. If a main() function is defined in more than a file in the project the IDE will raise an error of "multiple definitions of main". For this reason in Eclipse CDT each file containing a main() function should be in a separate project separated.
+Java in order to execute the IDE, then the compiler and the debugger. In Eclipse CDT an executable is created in a project that includes all the required C or C++ files, one of which contains the main() function. If a main() function is defined in more than a file in the project the IDE will raise an error of "multiple definitions of main". For this reason in Eclipse CDT each file containing a main() function should be in a separate project.
