@@ -43,7 +43,7 @@ dimension (in our case D = 2). The above equation has been determined
 from the probability distribution of traveler position in the square
 lattice as a function of the position x = (x1, x2) and the step (time)
 
-$$ P(x, t) = (\frac{D}{2 \pi t}D)^(\frac{D}{2}) * \exp(-\frac{Dx^2}{2ta^2}) $$
+$$ P(x, t) = (\frac{D}{2 \pi t})^(\frac{D}{2}) \exp(-\frac{Dx^2}{2ta^2}) $$
 
 so that <x^2(t)> = S(x^2 * P(x, t)dx)  (S represents the integration operator)
 
