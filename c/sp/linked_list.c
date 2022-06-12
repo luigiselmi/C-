@@ -1,5 +1,10 @@
 /*
-  An example of linked list
+  An example of linked list. The program opens a file
+  and parses the text reading words separated by a white
+  space. Each word is put in a structure with a pointer
+  to the next word. The program can be configured to build
+  a list of words in the same order as they appear in the
+  text or in an inverse order.
 */
 
 #include <stdio.h>
@@ -12,7 +17,7 @@
 #define INVERSE_LIST 0
 #define DIRECT_LIST 1
 
-#define MY_SUCCESS 0
+#define _SUCCESS 0
 #define _FAILURE -9
 
 FILE *fInput;
@@ -20,7 +25,7 @@ char *fInputName = "data/manzoni.dat";
 
 //int listType = INVERSE_LIST;
 int listType = DIRECT_LIST;
-char myString[MAX_STRING_LENGTH];
+char token[MAX_STRING_LENGTH]; // set of characters used to store words when complete
 
 void init(void);
 void openFile(void);
@@ -30,26 +35,21 @@ void buildDirectList(void);
 void printInverseList(void);
 void printDirectList(void);
 
-/* creiamo il puntatore che indica la lista
-   e visto che all'inizio la lista e' vuota
-   lo inizializziamo a NULL */
-
 struct word{
-  char *pointerToString;
-  struct word *pointerToNextWord;
+  char *pString;
+  struct word *pNext;
 } *wordList = NULL;
 
-struct word *pointerStart;
+struct word *pFirst;
 
 /*****************************************************************************/
 int main(void) {
-  int myEnd = 0;
-
+  int end_of_file = 0;
   init();
   openFile();
 
-  while(myEnd != 1){ // myEnd = 1 when the end of file is reached
-    myEnd = readWord();
+  while(end_of_file != 1){ // end_of_file = 1 when the end of file is reached
+    end_of_file = readWord();
     switch(listType){
     case INVERSE_LIST:
       buildInverseList();
@@ -104,25 +104,29 @@ void openFile(void) {
 }
 
 /*
-  lexical analysis: reads words one by one till the end of the input file.
+  lexical analysis: reads tokens of characters that are interpreted
+  as words when separated by a white space. The token is stored in
+  a global variable till it is a complete word. The function returns
+  an integer, after a word has been read, to indicate whether the end
+  of the file has been reached (1) or not (0).
 */
 int readWord(void) {
-  char myFlag = 1; // myFlag = 0 when a word is complete
-  int j, myEnd = 0; // myEnd = 1 when the end of file is reached
+  char wordComplete = 0; // 1 when a word is complete
+  int j, end_of_file = 0; // end_of_file = 1 when the end of file is reached
   j = 0;
-  while ( (j < MAX_STRING_LENGTH) && (myFlag == 1) ) {
-    myString[j] = fgetc(fInput); // reads a character from the stream
-    if (myString[j] == ' ') {
-      myString[j] = '\0';
-      myFlag = 0;
+  while ( (j < MAX_STRING_LENGTH) && (wordComplete == 0) ) {
+    token[j] = fgetc(fInput); // reads a character from the stream
+    if (token[j] == ' ') {
+      token[j] = '\0';
+      wordComplete = 1;
     }
-    else if (myString[j] == '\n') { // remove end of line
+    else if (token[j] == '\n') { // remove end of line
       j--;
     }
-    else if(myString[j] == EOF){
-      myEnd = 1;
-      myString[j] = '\0';
-      myFlag = 0;
+    else if(token[j] == EOF){
+      end_of_file = 1;
+      token[j] = '\0';
+      wordComplete = 1;
     }
     j++;
   }
@@ -133,84 +137,97 @@ int readWord(void) {
     printf("Compile again with a larger value of MAX_STRING_LENGTH. The current value is %d.\n", MAX_STRING_LENGTH);
     exit(_FAILURE);
   }
-  printf("Word of length %ld: %s\n", strlen(myString), myString);
-  return myEnd;
+  //printf("Word of length %ld: %s\n", strlen(token), token);
+  return end_of_file;
 }
 
-/*****************************************************************************/
+/*
+  This function is called from a loop in the main function every time a word has
+  been found in the text. The function checks whether the token is already in the
+  list, and if not it allocates the memory space for the new word element. The new
+  word is put on the top of the list so that when it's printed the list appears
+  to be the inverse of the original text.
+*/
 void buildInverseList(void) {
-  char *scratchPointer;
-  struct word *wordScratchPointer, *pointerCheck;
+  char *pString; // pointer to the memory reserved for the next word
+  struct word *pTempWordList; // pointer to the current word list
+  struct word *pStringCheck; // pointer used to navigate the word list
 
-  for (pointerCheck = wordList; pointerCheck != NULL; ) {
-    if(strcmp(pointerCheck -> pointerToString, myString) == 0)
+  // loops into the word list to check whether the string is already there
+  for (pStringCheck = wordList; pStringCheck != NULL; ) {
+    if(strcmp(pStringCheck -> pString, token) == 0)
       return;
-    pointerCheck = pointerCheck -> pointerToNextWord;
+    pStringCheck = pStringCheck -> pNext;
   }
 
-  scratchPointer = (char *) malloc(strlen(myString));
-  if (scratchPointer == NULL) {
+  pString = (char *) malloc(strlen(token)); // allocates the memory space to store the string
+  if (pString == NULL) {
     printf("Execution stopped: failed malloc 1 in c_l_i\n");
     exit(_FAILURE);
   }
 
-  wordScratchPointer = wordList;
-  wordList = (struct word *) malloc(sizeof(struct word));
+  pTempWordList = wordList;
+  wordList = (struct word *) malloc(sizeof(struct word)); // allocate the memory space for the word structure
   if (wordList == NULL) {
     printf("Execution stopped: failed malloc 2 in c_l_i\n");
     exit(_FAILURE);
   }
-  strcpy(scratchPointer, myString);
-  wordList -> pointerToString = scratchPointer;
-  wordList -> pointerToNextWord = wordScratchPointer;
+  strcpy(pString, token); // copies the value of the token into the memory space allocated to store it
+  wordList -> pString = pString;  // set the pointer to the word
+  wordList -> pNext = pTempWordList; // set the pointer to the next word element
 }
 
-/*****************************************************************************/
+/*
+  This function is the same as the buildInverseList() function but
+  words are put at the end of the list so that when it's printed the
+  words are printed in the same order as in the original text.
+*/
 void buildDirectList(void) {
-  char *scratchPointer;
-  struct word *wordScratchPointer, *pointerCheck;
+  char *pString; // pointer to the memory reserved for the next word
+  struct word *pTempWordList; // pointer to the current word list
+  struct word *pStringCheck; // pointer used to navigate the word list
 
-  for (pointerCheck = pointerStart; pointerCheck != NULL; ) {
-    if(strcmp(pointerCheck -> pointerToString, myString) == 0) return;
-    pointerCheck = pointerCheck -> pointerToNextWord;
+  // loops into the word list to check whether the string is already there
+  for (pStringCheck = pFirst; pStringCheck != NULL; ) {
+    if(strcmp(pStringCheck -> pString, token) == 0) return;
+    pStringCheck = pStringCheck -> pNext;
   }
 
-  scratchPointer = (char *) malloc(strlen(myString));
-  if (scratchPointer == NULL) {
+  pString = (char *) malloc(strlen(token)); // allocates the memory space to store the string
+  if (pString == NULL) {
     printf("Execution stopped: failed malloc 1 in c_l_d\n");
     exit(_FAILURE);
   }
 
-  wordScratchPointer = wordList;
+  pTempWordList = wordList;
   wordList = (struct word *) malloc(sizeof(struct word));
   if (wordList == NULL) {
     printf("Execution stopped: failed malloc 2 in c_l_d\n");
     exit(_FAILURE);
   }
-  strcpy(scratchPointer,myString);
-  wordList -> pointerToString = scratchPointer;
-  wordList -> pointerToNextWord = NULL;
-  if (wordScratchPointer != NULL)
-    wordScratchPointer -> pointerToNextWord = wordList;
-  if (wordScratchPointer == NULL) pointerStart = wordList;
+  strcpy(pString, token);
+  wordList -> pString = pString;
+  wordList -> pNext = NULL;
+  if (pTempWordList != NULL) pTempWordList -> pNext = wordList;
+  if (pTempWordList == NULL) pFirst = wordList;
 }
 
 /*****************************************************************************/
 void printInverseList(void) {
   struct word *wordScratchPointer = wordList;
   do {
-    printf("%s\n", wordScratchPointer -> pointerToString);
-    wordScratchPointer = wordScratchPointer -> pointerToNextWord;
+    printf("%s\n", wordScratchPointer -> pString);
+    wordScratchPointer = wordScratchPointer -> pNext;
   } while(wordScratchPointer != NULL);
 }
 
 /*****************************************************************************/
 void printDirectList(void) {
-  struct word *wordScratchPointer = pointerStart;
+  struct word *wordScratchPointer = pFirst;
 	do {
-    printf("%s\n", wordScratchPointer -> pointerToString);
-    wordScratchPointer = wordScratchPointer -> pointerToNextWord;
-  } while (wordScratchPointer -> pointerToNextWord != NULL);
+    printf("%s\n", wordScratchPointer -> pString);
+    wordScratchPointer = wordScratchPointer -> pNext;
+  } while (wordScratchPointer -> pNext != NULL);
 
-  printf("%s\n", wordScratchPointer -> pointerToString);
+  printf("%s\n", wordScratchPointer -> pString);
 }
