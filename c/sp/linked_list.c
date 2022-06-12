@@ -214,20 +214,20 @@ void buildDirectList(void) {
 
 /*****************************************************************************/
 void printInverseList(void) {
-  struct word *wordScratchPointer = wordList;
+  struct word *pTempWordList = wordList; // pointer to the current word list
   do {
-    printf("%s\n", wordScratchPointer -> pString);
-    wordScratchPointer = wordScratchPointer -> pNext;
-  } while(wordScratchPointer != NULL);
+    printf("%s\n", pTempWordList -> pString);
+    pTempWordList = pTempWordList -> pNext;
+  } while(pTempWordList != NULL);
 }
 
 /*****************************************************************************/
 void printDirectList(void) {
-  struct word *wordScratchPointer = pFirst;
+  struct word *pTempWordList = pFirst;
 	do {
-    printf("%s\n", wordScratchPointer -> pString);
-    wordScratchPointer = wordScratchPointer -> pNext;
-  } while (wordScratchPointer -> pNext != NULL);
+    printf("%s\n", pTempWordList -> pString);
+    pTempWordList = pTempWordList -> pNext;
+  } while (pTempWordList -> pNext != NULL);
 
-  printf("%s\n", wordScratchPointer -> pString);
+  printf("%s\n", pTempWordList -> pString);
 }
