@@ -145,7 +145,9 @@ void initNeighbors(void) {
 	(x, y) of the lattice. Only two states are allowed: spin
 	up (1), or spin down (-1). The initial label of each node
 	is also set using the rule label = x + L * y, where x is
-	the row and y is the column.
+	the row and y is the column. The probability of spin down
+	is set in a global variable (rho) as the ratio of nodes
+	with spin down to the total number of nodes.
 */
 void initRandomSpin(void)
 {
