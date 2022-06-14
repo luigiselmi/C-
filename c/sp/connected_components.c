@@ -5,7 +5,7 @@
 	has a label and a state, kept in two separate 2D arrays. At the
 	beginning each node is initialized with a unique label and then
 	its state is randomly set as spin down (-1) or spin up (+1).
-	The number of nodes that my take the state spin down is set through
+	The number of nodes that may take the state spin down is set through
 	the density. After the initialization is completed, the program
 	finds the connected component, that is the nodes that have the
 	same state and are neighbors. Each node state is compared to its
