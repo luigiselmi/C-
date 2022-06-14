@@ -5,13 +5,14 @@
 	has a label and a state, kept in two separate 2D arrays. At the
 	beginning each node is initialized with a unique label and then
 	its state is randomly set as spin down (-1) or spin up (+1).
-	After the initialization is completed, the program finds the
-	connected component, that is the nodes that have the same state
-	and are neighbors. Each node state is compared to its neighbors
-	and if they are in the same state (spin up or down) the label of
-	the node that is lexically lower is copied to the node with the
-	higher label so that they both have the same lower label. The
-	program loops several times through all the nodes in the lattice
+	The number of nodes that my take the state spin down is set through
+	the density. After the initialization is completed, the program
+	finds the connected component, that is the nodes that have the
+	same state and are neighbors. Each node state is compared to its
+	neighbors and if they are in the same state (spin up or down) the
+	label of the node that is lexically lower is copied to the node
+	with the higher label so that they both have the same lower label.
+	The program loops several times through all the nodes in the lattice
 	till there are labels that are changed and when there are no changes
 	it prints the lattice with the state and the final label of each
 	node that can be used to identify the connected components.
@@ -27,7 +28,7 @@
 #define L 10
 #define V L*L
 #define MAX_ITER 100
-#define rho 0.5
+#define rho 0.5 // ratio of nodes with spin down over the total number of nodes
 
 #define RIGHT 0
 #define TOP 1
