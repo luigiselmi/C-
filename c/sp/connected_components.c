@@ -92,7 +92,12 @@ int main(void) {
     return SUCCESS;
   }
 }
-/*****************************************************************************/
+/*
+  A node state is compared to one of its nearest neighbors' along
+	a direction (top, botton, left, right) and if they are in the
+	same state (spin up or down) the label of the node that is
+	lexically lower is copied to the node with the higher label.
+*/
 unsigned long siteUpdate(long direction, long site) {
   unsigned long labelChanged = 0;
 
