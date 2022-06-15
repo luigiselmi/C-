@@ -19,7 +19,14 @@ are no changes it prints the lattice with the state and the final
 label of each node that can be used to identify the connected
 components. There is a maximum number of loops in case the algorithm
 cannot find all the connected components.
+The output data can be ploted using gnuplot with the commands
 
+````
+set palette defined ( -1 "blue", 1 "white" )
+set autoscale xfix
+set autoscale yfix
+plot 'output_cc.dat' matrix with image
+````
 <p align="center">
   <img src="images/connected_components.png" width="640" height="456" alt="Connected components on a square lattice">
 </p>
