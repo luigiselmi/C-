@@ -22,10 +22,10 @@ cannot find all the connected components.
 The output data can be ploted using gnuplot with the commands
 
 ````
-set palette defined ( -1 "blue", 1 "white" )
-set autoscale xfix
-set autoscale yfix
-plot 'output_cc.dat' matrix with image
+gnuplot> set palette defined ( -1 "blue", 1 "white" )
+gnuplot> set autoscale xfix
+gnuplot> set autoscale yfix
+gnuplot> plot 'output_cc.dat' matrix with image
 ````
 <p align="center">
   <img src="images/connected_components.png" width="640" height="456" alt="Connected components on a square lattice">
