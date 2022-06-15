@@ -19,3 +19,7 @@ are no changes it prints the lattice with the state and the final
 label of each node that can be used to identify the connected
 components. There is a maximum number of loops in case the algorithm
 cannot find all the connected components.
+
+<p align="center">
+  <img src="images/connected_components.png" width="640" height="456" alt="Connected components on a square lattice">
+</p>
