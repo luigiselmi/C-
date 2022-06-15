@@ -28,7 +28,7 @@
 #define L 20
 #define V L*L
 #define MAX_ITER 100
-#define rho 0.7 // ratio of nodes with spin down over the total number of nodes
+#define rho 0.5 // ratio of nodes with spin down over the total number of nodes
 
 #define RIGHT 0
 #define TOP 1
