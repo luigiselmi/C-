@@ -4,20 +4,20 @@
 	so that the total (volume) number is LxL. Each node of the lattice
 	has a label and a state, kept in two separate 2D arrays. At the
 	beginning each node is initialized with a unique label and then
-	its state is randomly set as spin down (-1) or spin up (+1).
+	its state is randomly set to spin down (-1) or spin up (+1).
 	The number of nodes that may take the state spin down is set through
 	the density. After the initialization is completed, the program
 	finds the connected component, that is the nodes that have the
-	same state and are neighbors. Each node state is compared to its
-	neighbors and if they are in the same state (spin up or down) the
-	label of the node that is lexically lower is copied to the node
-	with the higher label so that they both have the same lower label.
-	The program loops several times through all the nodes in the lattice
-	till there are labels that are changed and when there are no changes
-	it prints the lattice with the state and the final label of each
-	node that can be used to identify the connected components.
-	There is a maximum number of loops in case the algorithm cannot
-	find all the connected components.
+	same state and are nearest neighbors. Each node state is compared
+	to its nearest neighbors' and if they are in the same state (spin
+	up or down) the label of the node that is lexically lower is copied
+	to the node with the higher label so that they both have the same
+	(lower) label. The program loops several times through all the nodes
+	in the lattice till there are labels that are changed and when there
+	are no changes it prints the lattice with the state and the final
+	label of each node that can be used to identify the connected
+	components. There is a maximum number of loops in case the algorithm
+	cannot find all the connected components.
 
 	Original source code:
 	https://chimera.roma1.infn.it/SPENG//PROGRAMMI/cap13/cap13_cc_local.c
