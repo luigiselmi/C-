@@ -25,10 +25,10 @@
 #include <stdio.h>
 #include <math.h>
 
-#define L 10
+#define L 20
 #define V L*L
 #define MAX_ITER 100
-#define rho 0.5 // ratio of nodes with spin down over the total number of nodes
+#define rho 0.7 // ratio of nodes with spin down over the total number of nodes
 
 #define RIGHT 0
 #define TOP 1
@@ -58,6 +58,7 @@ void initNeighbors(void);
 void initRandomSpin(void);
 unsigned long siteUpdate(long, long);
 void printLattice(void);
+void printGnuplot(void);
 
 #define FAILURE -1
 #define SUCCESS 1
@@ -83,7 +84,8 @@ int main(void) {
     }
     printf("# Number of labels changed %ld\n", numLabelsChanged);
   }
-  printLattice();
+  //printLattice();
+	printGnuplot();
   if (numLabelsChanged > 0) {
     printf("I have not been able to build the cluster\n");
     return FAILURE;
@@ -154,13 +156,12 @@ void initNeighbors(void) {
 	is set in a global variable (rho) as the ratio of nodes
 	with spin down to the total number of nodes.
 */
-void initRandomSpin(void)
-{
+void initRandomSpin(void) {
   long i, j;
   // set the state
-  for(i = 0; i < V; i++){
+  for (i = 0; i < V; i++) {
     MYRAND64;
-    if((double)myRand64 * inverseMaxRand64 < rho){
+    if ((double)myRand64 * inverseMaxRand64 < rho) {
       cluster[i].spin = SPIN_DOWN;
     }
     else{
@@ -168,8 +169,8 @@ void initRandomSpin(void)
     }
   }
   // set the initial label
-  for(i = 0; i < L; i++){
-    for(j = 0; j < L; j++){
+  for (i = 0; i < L; i++) {
+    for (j = 0; j < L; j++) {
       cluster[j + i * L].label   = j + i * L;
     }
   }
@@ -201,15 +202,33 @@ void printLattice(void) {
 
   for(j = 0; j < L; j++){printf("-----------");}
   printf("-\n");
-  for(i = 0; i < L; i++){
-    for(j = 0; j < L; j++){
+  for (i = 0; i < L; i++) {
+    for (j = 0; j < L; j++) {
       printf("| %2d (%4d) ",
 	     cluster[j + i * L].spin,
 	     cluster[j + i * L].label);
     }
     printf("|\n");
-    for(j = 0; j < L; j++){printf("-----------");}
+    for (j = 0; j < L; j++) {printf("-----------");}
     printf("-\n");
   }
   printf("\n");
+}
+/*
+  Prints the square lattice with state and final label of each node.
+*/
+void printGnuplot(void) {
+
+  long i, j;
+
+  //for(j = 0; j < L; j++){printf("-----------");}
+  //printf("-\n");
+  for (i = 0; i < L; i++) {
+    for (j = 0; j < L; j++)
+      printf("%2d ", cluster[j + i * L].spin);
+    printf("\n");
+    //for(j = 0; j < L; j++){printf("-----------");}
+    //printf("-\n");
+  }
+  //printf("\n");
 }
