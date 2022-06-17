@@ -1,6 +1,8 @@
-Connected Components
-====================
-This program finds the connected components in a 2-dimensional
+Connected Components and Percolation
+====================================
+Here we discuss about the connected components over a square lattice and percolation.
+## Connected components
+This program [connected_components.c](connected_components.c) finds the connected components in a 2-dimensional
 square lattice. L is the number of nodes per row and per column
 so that the total (volume) number is LxL. Each node of the lattice
 has a label and a state, kept in two separate 2D arrays. At the
@@ -30,3 +32,5 @@ gnuplot> plot 'output_cc.dat' matrix with image
 <p align="center">
   <img src="images/connected_components.png" width="640" height="456" alt="Connected components on a square lattice">
 </p>
+
+## Percolation
