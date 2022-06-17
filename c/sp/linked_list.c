@@ -23,8 +23,8 @@
 FILE *fInput;
 char *fInputName = "data/manzoni.dat";
 
-//int listType = INVERSE_LIST;
-int listType = DIRECT_LIST;
+int listType = INVERSE_LIST;
+//int listType = DIRECT_LIST;
 char token[MAX_STRING_LENGTH]; // set of characters used to store words when complete
 
 void init(void);
@@ -77,7 +77,6 @@ int main(void) {
   }
 }
 
-/*****************************************************************************/
 void init(void) {
   switch (listType) {
     case INVERSE_LIST:
@@ -92,7 +91,6 @@ void init(void) {
   }
 }
 
-/*****************************************************************************/
 void openFile(void) {
   fInput = fopen(fInputName,"r");
   if(fInput==NULL){
