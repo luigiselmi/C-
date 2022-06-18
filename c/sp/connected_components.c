@@ -14,16 +14,17 @@
 	to the node with the higher label so that they both have the same
 	(lower) label. The program loops several times through all the nodes
 	in the lattice till there are labels that are changed and when there
-	are no changes it prints the lattice with the state and the final
-	label of each node that can be used to identify the connected
-	components. There is a maximum number of loops in case the algorithm
-	cannot find all the connected components.
+	are no changes it prints the lattice with the final label of each node
+	that can be used to identify the connected components. There is a
+	maximum number of loops in case the algorithm cannot find all the
+	connected components.
 
 	Original source code:
 	https://chimera.roma1.infn.it/SPENG//PROGRAMMI/cap13/cap13_cc_local.c
 */
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define L 20
 #define V L*L
@@ -46,7 +47,10 @@ double inverseMaxRand64 = 1.0 / (double)MAX_RAND64;
 #define SPIN_UP 1       // two possible states of a node
 #define SPIN_DOWN -1
 
-unsigned long neighbor[V][4]; // 2D array used to hold the labels of all the nodes
+unsigned long neighbor[V][4]; // 2D array used to hold the state and label of the (4)
+                              // nodes adjacent to any node in the (square) lattice
+
+FILE *fDat;
 
 struct siteCluster{
   SPIN spin;
@@ -57,8 +61,8 @@ void init(void);
 void initNeighbors(void);
 void initRandomSpin(void);
 unsigned long siteUpdate(long, long);
-void printLattice(void);
 void printGnuplot(void);
+void print(void);
 
 #define FAILURE -1
 #define SUCCESS 1
@@ -66,7 +70,13 @@ void printGnuplot(void);
 /*****************************************************************************/
 int main(void) {
   long i, j;
-  unsigned long numLabelsChanged;
+  unsigned long numLabelsChanged; // number of labels changed after one iteration
+
+	fDat = fopen("output_cc.dat","w");
+  if(fDat == NULL) {
+    printf("Error: can't open the file with write permissions\n");
+    exit(1);
+  }
 
   init();
   initNeighbors();
@@ -84,7 +94,7 @@ int main(void) {
     }
     printf("# Number of labels changed %ld\n", numLabelsChanged);
   }
-  //printLattice();
+  print();
 	printGnuplot();
   if (numLabelsChanged > 0) {
     printf("I have not been able to build the cluster\n");
@@ -118,11 +128,12 @@ unsigned long siteUpdate(long direction, long site) {
 }
 
 /*
-  This function is used to initialize the label of all the nodes
-	in the lattice. The labels are kept in a separate 2D array.
+  This function is used to store the (4) nearest neighbors of
+	each node. The nodes' neighbors are kept in a separate 2D array.
 	Each lattice node (x, y) is mapped to an element of the array
 	with index value i = x + L * y. The labels of all its neighbors
-	(top, bottom, left, right) are computed using the rule label = x + L * y.
+	(top, bottom, left, right) are computed using the rule
+	label = x + L * y.
 */
 void initNeighbors(void) {
   long x, y;
@@ -148,13 +159,14 @@ void initNeighbors(void) {
 }
 
 /*
-  This function randomly initializes the state of each node
-	(x, y) of the lattice. Only two states are allowed: spin
-	up (1), or spin down (-1). The initial label of each node
-	is also set using the rule label = x + L * y, where x is
-	the row and y is the column. The probability of spin down
-	is set in a global variable (rho) as the ratio of nodes
-	with spin down to the total number of nodes.
+  This function randomly initializes the state and label
+	of each node (x, y) of the lattice. Only two states are
+	allowed: spin up (1), or spin down (-1). The initial
+	label of each node is also set using the rule
+	label = x + L * y, where x is the row and y is the column.
+	The probability of spin down is set in a global variable
+	(rho) as the ratio of nodes with spin down to the total
+	number of nodes.
 */
 void initRandomSpin(void) {
   long i, j;
@@ -177,7 +189,6 @@ void initRandomSpin(void) {
 
 }
 
-/*****************************************************************************/
 void init(void) {
 
   int randomSeed;
@@ -194,41 +205,38 @@ void init(void) {
   for (i = 0; i < 1000; i++) {MYRAND64;}
 }
 /*
-  Prints the square lattice with state and final label of each node.
+  Prints on standard output the square lattice with
+	the final label of each node.
 */
-void printLattice(void) {
+void print(void) {
 
   long i, j;
 
-  for(j = 0; j < L; j++){printf("-----------");}
+  for(j = 0; j < L; j++){printf("------");}
   printf("-\n");
   for (i = 0; i < L; i++) {
     for (j = 0; j < L; j++) {
-      printf("| %2d (%4d) ",
-	     cluster[j + i * L].spin,
-	     cluster[j + i * L].label);
+      //printf("| %2d (%4d) ", cluster[j + i * L].spin, cluster[j + i * L].label);
+			printf("(%3d) ", cluster[j + i * L].label);
     }
     printf("|\n");
-    for (j = 0; j < L; j++) {printf("-----------");}
+    for (j = 0; j < L; j++) {printf("------");}
     printf("-\n");
   }
   printf("\n");
 }
 /*
-  Prints the square lattice with state and final label of each node.
+  Prints on a file the square lattice with the final
+	label of each node.
 */
 void printGnuplot(void) {
 
   long i, j;
 
-  //for(j = 0; j < L; j++){printf("-----------");}
-  //printf("-\n");
   for (i = 0; i < L; i++) {
     for (j = 0; j < L; j++)
-      printf("%2d ", cluster[j + i * L].spin);
-    printf("\n");
-    //for(j = 0; j < L; j++){printf("-----------");}
-    //printf("-\n");
+      fprintf(fDat, "%2d ", cluster[j + i * L].label);
+    fprintf(fDat, "\n");
   }
-  //printf("\n");
+  fclose(fDat);
 }
