@@ -43,6 +43,9 @@ In this section are reported some simulations performed using the code in this r
 ### Connected components
 [Connected components](c/sp/connected_components.md)  
 
+### Cellular automaton
+[Cellular automaton](c/sp/cellular_automaton.md)
+
 ## References and Credits
 Most of the software is taken from the following books:
 1. [Kernighan, Ritchie - The C Programming Language, 2nd Ed](http://s3-us-west-2.amazonaws.com/belllabs-microsite-dritchie/cbook/index.html)  

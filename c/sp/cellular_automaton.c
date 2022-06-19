@@ -1,3 +1,6 @@
+/*
+  
+*/
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -8,12 +11,12 @@
 typedef unsigned long long RANDOM_TYPE;
 typedef char CELLULAR_AUTOMA;
 
-/* I numeri random potrebbero servire per
-   inizializzare */
+/* Random number that could be used for a random
+   initialization of the lattice sites  */
 #define MYR64  myr64 = (6364136223846793005ULL * myr64)
 #define MAX_RAND64     0XFFFFFFFFFFFFFFFFULL
 RANDOM_TYPE myr64;
-double inverseMaxRand64 = 1.0L / (double)MAX_RAND64;
+double inverseMaxRand64 = 1.0L / (double) MAX_RAND64;
 
 CELLULAR_AUTOMA C[L], CP[L];
 int rule = 150;
@@ -40,39 +43,37 @@ int main(void) {
   }
 
   C[L / 2] = 1;
-  printf("# la regola e' %d\n",rule);
+  printf("# The rule is %d\n", rule);
 
   for (time = 0; time < NUM_ITER; time++) {
     for (site = 0; site < L; site++) {
       //printf("X %ld T %ld CELLA %d\n", site - L / 2, time, C[site]);
-			//printf("%d ", C[site]);
 			fprintf(fDat, "%d ", C[site]);
     }
-		//printf("\n");
 		fprintf(fDat, "\n");
-    /* l'update e' sincrono */
+    /* synchronous update */
     for (site = 1; site < L - 1; site++) {
       if (rule == 90) {
-	      /* regola 90 che e' lo XOR dei vicini */
-	      CP[site] = C[site-1] ^ C[site+1];
+	      /* rule 90 corresponds to the XOR of the two nearest neighbors */
+	      CP[site] = C[site - 1] ^ C[site + 1];
       }
 			else if (rule == 150) {
-	      /* regola 150: XOR dei vicini, XOR con se stesso */
-	      CP[site] = (C[site-1] ^ C[site+1]) ^ C[site];
+	      /* rule 150: XOR of the two nearest neighbors, and XOR with itself */
+	      CP[site] = (C[site - 1] ^ C[site + 1]) ^ C[site];
       }
 			else {
-	      printf("errore programma: regola non definita\n");
+	      printf("Error: rule undefined\n");
 	      exit(FAILURE);
       }
     }
-    /* rimetto CP in C */
+    /* copies CP in C */
     for (site = 0; site < L; site++) {
       C[site] = CP[site];
     }
   }
 	/*
   for (site = 0; site < L; site++) {
-    printf("X %ld T %ld CELLA %d\n", site - L / 2, time, C[site]);
+    printf("X %ld T %ld CELL %d\n", site - L / 2, time, C[site]);
   }
 	*/
 	printf("Data automaton.dat file ready.");
