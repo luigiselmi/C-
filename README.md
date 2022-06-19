@@ -48,3 +48,4 @@ Most of the software is taken from the following books:
 1. [Kernighan, Ritchie - The C Programming Language, 2nd Ed](http://s3-us-west-2.amazonaws.com/belllabs-microsite-dritchie/cbook/index.html)  
 2. [Barone, Marinari, Organtini, Ricci-Tersenghi - Scientific Programming](https://chimera.roma1.infn.it/SPENG/)    
 3. [Gnuplotting, scientific plots using gnuplot](http://www.gnuplotting.org/)  
+4. [Hartmann et al. - A practical guide to computer simulations](https://arxiv.org/abs/cond-mat/0111531)  
