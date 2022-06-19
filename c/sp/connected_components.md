@@ -3,10 +3,12 @@ Connected Components and Percolation
 Here we discuss about the connected components over a square lattice and percolation.
 
 ## Connected components
-This program [connected_components.c](connected_components.c) finds the connected components in a 2-dimensional square lattice. L is the number of nodes per row and per column so that the total (volume) number is LxL. Each node of the lattice
-has a label and a state, kept in two separate 2D arrays. At the
-beginning each node is initialized with a unique label and then
-its state is randomly set to spin down (-1) or spin up (+1).
+This program [connected_components.c](connected_components.c), or [percolation.c](percolation.c) based on a doubly linked list, find the
+connected components in a 2-dimensional square lattice. L is the number
+of nodes per row and per column so that the total (volume) number is LxL.
+Each node of the lattice has a label and a state, kept in two separate
+2D arrays. At the beginning each node is initialized with a unique label
+and then its state is randomly set to spin down (-1) or spin up (+1).
 The number of nodes that may take the state spin down is set through
 the density. After the initialization is completed, the program
 finds the connected component, that is the nodes that have the
