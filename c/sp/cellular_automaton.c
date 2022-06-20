@@ -22,6 +22,9 @@
 	the lattice in the horizontal axis and the time in the vertical
 	axis.
 
+	Original code:
+	https://chimera.roma1.infn.it/SPENG//PROGRAMMI/cap14/cap14_automa.c
+
 */
 #include <stdio.h>
 #include <math.h>
