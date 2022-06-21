@@ -1,3 +1,7 @@
+/* Sorts lines in the standard input using the quicksort algorithm.
+   The program is terminated when a EOF character is written in the
+   standard input, i.e. Ctrl + D 
+*/
 #include <stdio.h>
 #include <string.h> // strcpy(), strcmp(),
 
@@ -9,8 +13,7 @@ int readlines(char *pline[], int maxlines);
 void writelines(char *pline[], int nlines);
 void qsort(char *v[], int left, int right);
 
-/* sorts lines in the standard input. The program is terminated
-   when a EOF character is written in the standard input i.e. Ctrl + D */
+
 int main() {
   int nlines; // number of lines read
   if ((nlines = readlines(pline, MAX_LINES)) >= 0) {
