@@ -1,3 +1,7 @@
+/* Implements a simple calculator using the reverse Polish notation
+   i.e. the operators follow their operands. The program is terminated
+   when a EOF character is written in the standard input i.e. Ctrl + D
+*/
 #include <stdio.h>
 #include <stdlib.h>  // atof() function
 #include <ctype.h>  // isdigit() function
@@ -18,11 +22,6 @@ double val[MAX_VAL];  // stack of values
 #define BUF_SIZE 100
 char buf[BUF_SIZE];
 int bufp = 0;
-
-/* Implements a simple calculator using the reverse Polish notation
-   i.e. the operators follow their operands. The program is terminated
-   when a EOF character is written in the standard input i.e. Ctrl + D
-*/
 
 int main() {
 
