@@ -51,3 +51,4 @@ Most of the software is taken from the following books:
 2. [Barone, Marinari, Organtini, Ricci-Tersenghi - Scientific Programming](https://chimera.roma1.infn.it/SPENG/)    
 3. [Gnuplotting, scientific plots using gnuplot](http://www.gnuplotting.org/)  
 4. [Hartmann et al. - A practical guide to computer simulations](https://arxiv.org/abs/cond-mat/0111531)  
+5. [Goldberg - What every computer scientist should know about floating-point arithmetic](https://dl.acm.org/doi/10.1145/103162.103163)  
